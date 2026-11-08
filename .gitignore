@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+.venv/
+*.pyc
+.ipynb_checkpoints/
+builder/cache/
+
+# Node / build
+node_modules/
+dist/
+.firebase/
+*.log
+
+# Secrets (never commit)
+.env
+.env.*
+*.key
+service-account*.json
+
+# OS
+.DS_Store
