@@ -1,0 +1,473 @@
+{
+  "mission_id": "boxwork-01",
+  "site": "Mount Sharp boxwork, Gale Crater, Mars",
+  "anchor": {
+    "mars": [
+      -4.803606,
+      137.380074
+    ],
+    "field": [
+      0,
+      0
+    ],
+    "rotation_deg": 0,
+    "scale": 1.0
+  },
+  "route": [
+    {
+      "lat": -4.80360579,
+      "lon": 137.3800743,
+      "elev": -3640.497,
+      "slope": 6.54
+    },
+    {
+      "lat": -4.80401601,
+      "lon": 137.3797556,
+      "elev": -3635.866,
+      "slope": 9.21
+    },
+    {
+      "lat": -4.804189,
+      "lon": 137.3796858,
+      "elev": -3632.878,
+      "slope": 16.96
+    },
+    {
+      "lat": -4.80436679,
+      "lon": 137.3796237,
+      "elev": -3630.754,
+      "slope": 6.81
+    },
+    {
+      "lat": -4.80443344,
+      "lon": 137.3795572,
+      "elev": -3631.479,
+      "slope": 3.96
+    },
+    {
+      "lat": -4.80474015,
+      "lon": 137.3793204,
+      "elev": -3624.329,
+      "slope": 13.43
+    },
+    {
+      "lat": -4.80494509,
+      "lon": 137.3792959,
+      "elev": -3623.51,
+      "slope": 10.04
+    },
+    {
+      "lat": -4.80520603,
+      "lon": 137.3794477,
+      "elev": -3622.376,
+      "slope": 6.59
+    },
+    {
+      "lat": -4.80545276,
+      "lon": 137.3795247,
+      "elev": -3620.597,
+      "slope": 7.41
+    },
+    {
+      "lat": -4.80549507,
+      "lon": 137.3795358,
+      "elev": -3620.486,
+      "slope": 9.85
+    },
+    {
+      "lat": -4.80541391,
+      "lon": 137.3795125,
+      "elev": -3620.089,
+      "slope": 4.8
+    },
+    {
+      "lat": -4.80548391,
+      "lon": 137.3799173,
+      "elev": -3621.591,
+      "slope": 7.41
+    },
+    {
+      "lat": -4.80585913,
+      "lon": 137.3797583,
+      "elev": -3617.654,
+      "slope": 9.83
+    },
+    {
+      "lat": -4.80599016,
+      "lon": 137.3794602,
+      "elev": -3613.896,
+      "slope": 11.82
+    },
+    {
+      "lat": -4.80616679,
+      "lon": 137.379723,
+      "elev": -3613.975,
+      "slope": 12.08
+    },
+    {
+      "lat": -4.80645796,
+      "lon": 137.3796739,
+      "elev": -3611.188,
+      "slope": 13.64
+    },
+    {
+      "lat": -4.80635617,
+      "lon": 137.3791167,
+      "elev": -3609.909,
+      "slope": 17.53
+    },
+    {
+      "lat": -4.80653823,
+      "lon": 137.3793381,
+      "elev": -3607.128,
+      "slope": 13.27
+    },
+    {
+      "lat": -4.80655332,
+      "lon": 137.3793171,
+      "elev": -3606.72,
+      "slope": 15.04
+    },
+    {
+      "lat": -4.80669051,
+      "lon": 137.3793537,
+      "elev": -3608.108,
+      "slope": 13.3
+    },
+    {
+      "lat": -4.80679651,
+      "lon": 137.3794121,
+      "elev": -3604.677,
+      "slope": 13.24
+    },
+    {
+      "lat": -4.80689063,
+      "lon": 137.3798121,
+      "elev": -3610.488,
+      "slope": 8.33
+    },
+    {
+      "lat": -4.8068928,
+      "lon": 137.3798418,
+      "elev": -3610.513,
+      "slope": 11.93
+    },
+    {
+      "lat": -4.80708025,
+      "lon": 137.3798962,
+      "elev": -3607.997,
+      "slope": 10.0
+    },
+    {
+      "lat": -4.80716832,
+      "lon": 137.3798956,
+      "elev": -3607.704,
+      "slope": 4.71
+    },
+    {
+      "lat": -4.80745212,
+      "lon": 137.3800604,
+      "elev": -3605.483,
+      "slope": 8.2
+    },
+    {
+      "lat": -4.80762759,
+      "lon": 137.3801893,
+      "elev": -3606.064,
+      "slope": 8.63
+    },
+    {
+      "lat": -4.8079252,
+      "lon": 137.3802489,
+      "elev": -3605.206,
+      "slope": 5.63
+    },
+    {
+      "lat": -4.80802327,
+      "lon": 137.3805074,
+      "elev": -3604.77,
+      "slope": 8.16
+    },
+    {
+      "lat": -4.80805222,
+      "lon": 137.380883,
+      "elev": -3606.525,
+      "slope": 7.37
+    },
+    {
+      "lat": -4.80827103,
+      "lon": 137.3812695,
+      "elev": -3608.263,
+      "slope": 8.35
+    },
+    {
+      "lat": -4.80871606,
+      "lon": 137.3815696,
+      "elev": -3606.57,
+      "slope": 8.61
+    },
+    {
+      "lat": -4.80871233,
+      "lon": 137.3816902,
+      "elev": -3606.641,
+      "slope": 4.39
+    },
+    {
+      "lat": -4.80827147,
+      "lon": 137.3812465,
+      "elev": -3608.02,
+      "slope": 8.87
+    },
+    {
+      "lat": -4.80801097,
+      "lon": 137.3810178,
+      "elev": -3607.941,
+      "slope": 9.26
+    },
+    {
+      "lat": -4.80783916,
+      "lon": 137.3810353,
+      "elev": -3610.432,
+      "slope": 6.71
+    },
+    {
+      "lat": -4.80799931,
+      "lon": 137.3810495,
+      "elev": -3608.689,
+      "slope": 9.65
+    },
+    {
+      "lat": -4.80800755,
+      "lon": 137.3810041,
+      "elev": -3607.722,
+      "slope": 11.0
+    },
+    {
+      "lat": -4.80776275,
+      "lon": 137.3810137,
+      "elev": -3611.533,
+      "slope": 12.23
+    },
+    {
+      "lat": -4.80790799,
+      "lon": 137.3811194,
+      "elev": -3610.29,
+      "slope": 14.12
+    },
+    {
+      "lat": -4.80803169,
+      "lon": 137.3809929,
+      "elev": -3607.648,
+      "slope": 9.53
+    },
+    {
+      "lat": -4.80800539,
+      "lon": 137.3809924,
+      "elev": -3608.018,
+      "slope": 11.46
+    },
+    {
+      "lat": -4.8078367,
+      "lon": 137.38142,
+      "elev": -3610.912,
+      "slope": 4.38
+    },
+    {
+      "lat": -4.8075379,
+      "lon": 137.3815047,
+      "elev": -3613.194,
+      "slope": 7.19
+    },
+    {
+      "lat": -4.80734998,
+      "lon": 137.381668,
+      "elev": -3615.743,
+      "slope": 11.49
+    },
+    {
+      "lat": -4.80752572,
+      "lon": 137.38194,
+      "elev": -3615.227,
+      "slope": 6.68
+    },
+    {
+      "lat": -4.80790359,
+      "lon": 137.3825624,
+      "elev": -3615.835,
+      "slope": 4.85
+    },
+    {
+      "lat": -4.80778482,
+      "lon": 137.382671,
+      "elev": -3617.009,
+      "slope": 3.69
+    }
+  ],
+  "layers": [
+    {
+      "id": "hirise",
+      "name": "Photo",
+      "mission": "MRO",
+      "instrument": "HiRISE",
+      "kind": "optical",
+      "tiles": "https://trek.nasa.gov/tiles/Mars/EQ/curiosity_hirise_mosaic/1.0.0/default/default028mm/{z}/{y}/{x}.png"
+    },
+    {
+      "id": "minerals",
+      "name": "Minerals",
+      "mission": "MRO",
+      "instrument": "CRISM",
+      "kind": "spectral",
+      "image": "assets/crism.png",
+      "bounds": [
+        [
+          -4.811,
+          137.378
+        ],
+        [
+          -4.802,
+          137.384
+        ]
+      ]
+    }
+  ],
+  "stops": [
+    {
+      "id": 0,
+      "name": "Base",
+      "mars": [
+        -4.803606,
+        137.380074
+      ],
+      "field": null,
+      "sol": 4596,
+      "slope_deg": 0,
+      "hazard": "Flat area, safe to proceed.",
+      "task": "Check oxygen levels and begin the walk.",
+      "science": "This is the entry point to the ancient boxwork formations.",
+      "temp_c": -60,
+      "rad_uSv_h": 28,
+      "photos": [
+        "assets/stop0.jpg"
+      ],
+      "sources": [
+        "MSL waypoints"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "First ridges",
+      "mars": [
+        -4.805495,
+        137.379536
+      ],
+      "field": null,
+      "sol": 4618,
+      "slope_deg": 5,
+      "hazard": "Uneven ground, watch your step.",
+      "task": "Take a photo of the first visible mineral veins.",
+      "science": "These ridges show where ancient groundwater cracked the rock.",
+      "temp_c": -60,
+      "rad_uSv_h": 28,
+      "photos": [
+        "assets/stop1.jpg"
+      ],
+      "sources": [
+        "MSL waypoints"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Steep ridge",
+      "mars": [
+        -4.806553,
+        137.379317
+      ],
+      "field": null,
+      "sol": 4639,
+      "slope_deg": 15,
+      "hazard": "Steep slope (15 degrees), walk slowly.",
+      "task": "Photograph the dark crack on the ridge top.",
+      "science": "The ridge is rock hardened by minerals from old groundwater.",
+      "temp_c": -60,
+      "rad_uSv_h": 28,
+      "photos": [
+        "assets/stop2.jpg"
+      ],
+      "sources": [
+        "MSL waypoints"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Hollow",
+      "mars": [
+        -4.807168,
+        137.379896
+      ],
+      "field": null,
+      "sol": 4655,
+      "slope_deg": 2,
+      "hazard": "Possible soft sand, check footing.",
+      "task": "Inspect the ground for loose soil samples.",
+      "science": "Hollows like this can trap wind-blown Martian dust.",
+      "temp_c": -60,
+      "rad_uSv_h": 28,
+      "photos": [
+        "assets/stop3.jpg"
+      ],
+      "sources": [
+        "MSL waypoints"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Main site",
+      "mars": [
+        -4.808008,
+        137.381004
+      ],
+      "field": null,
+      "sol": 4711,
+      "slope_deg": 6,
+      "hazard": "Moderate slope, safe for extended work.",
+      "task": "Collect a carbonate rock sample.",
+      "science": "This area contains the highest concentration of boxwork minerals.",
+      "temp_c": -60,
+      "rad_uSv_h": 28,
+      "photos": [
+        "assets/stop4.jpg"
+      ],
+      "sources": [
+        "MSL waypoints"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Exit",
+      "mars": [
+        -4.807785,
+        137.382671
+      ],
+      "field": null,
+      "sol": 4820,
+      "slope_deg": 4,
+      "hazard": "End of route, turn back.",
+      "task": "Verify oxygen for the return trip.",
+      "science": "This marks the edge of the currently explored boxwork region.",
+      "temp_c": -60,
+      "rad_uSv_h": 28,
+      "photos": [
+        "assets/stop5.jpg"
+      ],
+      "sources": [
+        "MSL waypoints"
+      ]
+    }
+  ],
+  "suit": {
+    "o2_start_pct": 100,
+    "o2_pct_per_min": 0.25,
+    "walk_speed_mps": 0.8
+  }
+}
