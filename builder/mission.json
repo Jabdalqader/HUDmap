@@ -1,0 +1,63 @@
+{
+  "mission_id": "boxwork-01",
+  "site": "Mount Sharp boxwork, Gale Crater, Mars",
+  "anchor": {
+    "mars": [-4.803606, 137.380074],
+    "field": [0, 0],
+    "rotation_deg": 0,
+    "scale": 1.0
+  },
+  "route": [
+    {
+      "lat": -4.803606,
+      "lon": 137.380074,
+      "elev": -3640.5,
+      "slope": 6.5
+    }
+  ],
+  "layers": [
+    {
+      "id": "hirise",
+      "name": "Photo",
+      "mission": "MRO",
+      "instrument": "HiRISE",
+      "kind": "optical",
+      "tiles": "https://trek.nasa.gov/tiles/Mars/EQ/curiosity_hirise_mosaic/1.0.0/default/default028mm/{z}/{y}/{x}.png"
+    },
+    {
+      "id": "minerals",
+      "name": "Minerals",
+      "mission": "MRO",
+      "instrument": "CRISM",
+      "kind": "spectral",
+      "image": "assets/crism.png",
+      "bounds": [[-4.811, 137.378], [-4.802, 137.384]]
+    }
+  ],
+  "stops": [
+    {
+      "id": 2,
+      "name": "Steep ridge",
+      "mars": [-4.806553, 137.379317],
+      "field": null,
+      "sol": 4639,
+      "slope_deg": 15,
+      "hazard": "Steep slope, walk slowly",
+      "task": "Photograph the dark crack on the ridge top",
+      "science": "The ridge is rock hardened by minerals from old groundwater",
+      "temp_c": -60,
+      "rad_uSv_h": 28,
+      "photos": ["assets/stop2.jpg"],
+      "sources": [
+        "MSL waypoints",
+        "Navcam sol 4639",
+        "NASA boxwork article 2026-02-23"
+      ]
+    }
+  ],
+  "suit": {
+    "o2_start_pct": 100,
+    "o2_pct_per_min": 0.25,
+    "walk_speed_mps": 0.8
+  }
+}
