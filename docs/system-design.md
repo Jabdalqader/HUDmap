@@ -170,7 +170,7 @@ flowchart LR
 
     M --> S2 --> DONE([Submitted])
 ```
-Full task details: `backlog.md`.
+Task details are on the GitHub project board.
 
 ---
 

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Mars 3D sim test</title>
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; font-family: system-ui, sans-serif; touch-action: none; user-select: none; -webkit-user-select: none; }
+  #world { position: fixed; inset: 0; }
+  .eye { position: fixed; top: 0; bottom: 0; width: 50%; pointer-events: none; color: #7dfcff; font: 600 12px Menlo, monospace; text-shadow: 0 0 4px #000; }
+  .eye.l { left: 0; } .eye.r { left: 50%; }
+  .mono .eye.r { display: none; } .mono .eye.l { width: 100%; }
+  .info { position: absolute; top: 8%; left: 18%; right: 18%; background: rgba(0,0,0,.4); border-radius: 8px; padding: 6px 10px; line-height: 1.5; }
+  .card { position: absolute; bottom: 10%; left: 14%; right: 14%; background: rgba(5,20,30,.8); border: 1px solid #7dfcff; border-radius: 10px;
+          padding: 8px; display: none; gap: 8px; align-items: center; color: #e6fbff; }
+  .card.show { display: flex; }
+  .card .ph { width: 40%; aspect-ratio: 2/1; background-size: cover; background-position: center; border-radius: 6px; filter: sepia(.8) saturate(1.5); flex: none; }
+  .card b { color: #7dfcff; display: block; font-size: 13px; }
+  #start { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+           background: rgba(0,0,0,.85); color: #fff; text-align: center; font-size: 17px; z-index: 5; }
+  #start button { font-size: 20px; padding: 12px 22px; border-radius: 12px; border: 0; background: #ff7a3d; color: #fff; margin: 0 6px; }
+  #start small { color: #aaa; max-width: 440px; }
+</style>
+</head>
+<body>
+<div id="world"></div>
+<div class="eye l"><div class="info"></div><div class="card"><div class="ph"></div><div class="txt"></div></div></div>
+<div class="eye r"><div class="info"></div><div class="card"><div class="ph"></div><div class="txt"></div></div></div>
+<div id="start">
+  <b>Mars 3D sim test</b>
+  <div><button id="vr">VR box</button><button id="flat">Flat screen</button></div>
+  <small>You <b>walk by yourself</b> along Curiosity's route and stop at each glowing beacon.<br>
+  Turn your head to look around. Look at the rock with the blue outline for 2 s to scan it.<br>
+  Tap the screen to pause / continue. Laptop: drag the mouse to look, hold Space to walk yourself, K = dust storm.</small>
+</div>
+<script type="module">
+  import { sim } from "./sim.js";
+  const q = new URLSearchParams(location.search);
+  const mission = await (await fetch(q.get("mission") || "test-mission.json")).json();
+  const $ = (s) => [...document.querySelectorAll(s)];
+
+  async function go(stereo) {
+    document.body.classList.toggle("mono", !stereo);
+    await sim.start(mission, { container: document.getElementById("world"), assetsBase: "../mission/", stereo, speed: Number(q.get("speed") || 1.5), autopilot: q.get("autopilot") !== "0" });
+    await sim.enableSensors();
+    try { await navigator.wakeLock?.request("screen"); } catch (_) {}
+    try { await document.documentElement.requestFullscreen(); await screen.orientation.lock("landscape"); } catch (_) {}
+    document.getElementById("start").remove();
+    if (q.has("stop")) sim.teleport(Number(q.get("stop")));
+    if (q.has("look")) sim.look(Number(q.get("look")), Number(q.get("pitch") || 0));
+    if (q.has("dust")) sim.event("dust");
+    if (q.has("ff")) { sim.fastForward(Number(q.get("ff"))); console.log("FF " + JSON.stringify(sim.getPosition())); }
+  }
+  document.getElementById("vr").onclick = () => go(true);
+  document.getElementById("flat").onclick = () => go(false);
+  if (q.has("auto")) go(q.get("auto") !== "flat");
+
+  // test only: tap the screen to pause / continue the automatic walk
+  addEventListener("touchend", () => { if (!document.getElementById("start")) sim.setAutopilot(!sim.isAutopilot()); });
+  addEventListener("keydown", (e) => { if (e.key === "k" || e.key === "K") sim.event("dust"); });
+
+  let cardTimer;
+  function showCard(i, extra) {
+    const st = mission.stops[i];
+    $(".card .ph").forEach((el) => (el.style.backgroundImage = `url(../mission/assets/pano_stop${i}.jpg)`));
+    $(".card .txt").forEach((el) => (el.innerHTML = `<b>STOP ${i} · ${st.name}</b>${extra || st.task || ""}`));
+    $(".card").forEach((el) => el.classList.add("show"));
+    clearTimeout(cardTimer); cardTimer = setTimeout(() => $(".card").forEach((el) => el.classList.remove("show")), 7000);
+  }
+  sim.on("arrive", ({ stop }) => showCard(stop));
+  sim.on("scan", ({ stop }) => showCard(stop, "✅ Rock scanned, sample collected"));
+
+  setInterval(() => {
+    let p; try { p = sim.getPosition(); } catch (_) { return; }
+    const next = mission.stops[p.nextStop];
+    const done = p.visited.every(Boolean);
+    $(".info").forEach((el) => (el.innerHTML =
+      (done ? "ALL STOPS VISITED ✅" : `NEXT: ${next.name} · ${p.dist_next_m.toFixed(0)} m`) +
+      (sim.isAutopilot() ? "" : " · PAUSED (tap)") +
+      `<br>samples ${p.scanned.filter(Boolean).length}/${p.scanned.length} · look ${p.heading.toFixed(0)}°`));
+  }, 250);
+</script>
+</body>
+</html>

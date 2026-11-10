@@ -1,0 +1,25 @@
+{
+  "stop": 3,
+  "sol": 4655,
+  "left_heading_deg": 137.69,
+  "missing_deg": 0.0,
+  "deg_per_px": 0.08789,
+  "top_el_deg": -0.59,
+  "width_px": 4096,
+  "height_px": 389,
+  "source": "Curiosity Navcam (NASA/JPL-Caltech), raw images",
+  "frames": [
+    "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/04655/opgs/edr/ncam/NLB_810747530EDR_F1182538NCAM00276M_.JPG",
+    "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/04655/opgs/edr/ncam/NLB_810747561EDR_F1182538NCAM00276M_.JPG",
+    "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/04655/opgs/edr/ncam/NLB_810747593EDR_F1182538NCAM00276M_.JPG",
+    "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/04655/opgs/edr/ncam/NLB_810748582EDR_F1182538NCAM00277M_.JPG",
+    "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/04655/opgs/edr/ncam/NLB_810748614EDR_F1182538NCAM00277M_.JPG",
+    "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/04655/opgs/edr/ncam/NLB_810748653EDR_F1182538NCAM00277M_.JPG",
+    "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/04655/opgs/edr/ncam/NLB_810748736EDR_F1182538NCAM00277M_.JPG",
+    "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/04655/opgs/edr/ncam/NLB_810748767EDR_F1182538NCAM00277M_.JPG",
+    "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/04655/opgs/edr/ncam/NLB_810748798EDR_F1182538NCAM00277M_.JPG",
+    "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/04655/opgs/edr/ncam/NLB_810748829EDR_F1182538NCAM00277M_.JPG",
+    "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/04655/opgs/edr/ncam/NLB_810747468EDR_F1182538NCAM00276M_.JPG",
+    "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/04655/opgs/edr/ncam/NLB_810747499EDR_F1182538NCAM00276M_.JPG"
+  ]
+}

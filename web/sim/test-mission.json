@@ -1,0 +1,414 @@
+{
+ "_note": "TEST FILE for the simulation only. The real mission.json comes from builder/ (T1.1).",
+ "mission_id": "boxwork-test",
+ "site": "Mount Sharp boxwork, Gale Crater, Mars",
+ "route": [
+  {
+   "lat": -4.8036058,
+   "lon": 137.3800743,
+   "elev": -3640.5,
+   "slope": 6.54,
+   "sol": 4596
+  },
+  {
+   "lat": -4.804016,
+   "lon": 137.3797556,
+   "elev": -3635.9,
+   "slope": 9.21,
+   "sol": 4598
+  },
+  {
+   "lat": -4.804189,
+   "lon": 137.3796858,
+   "elev": -3632.9,
+   "slope": 16.96,
+   "sol": 4600
+  },
+  {
+   "lat": -4.8043668,
+   "lon": 137.3796237,
+   "elev": -3630.8,
+   "slope": 6.81,
+   "sol": 4602
+  },
+  {
+   "lat": -4.8044334,
+   "lon": 137.3795572,
+   "elev": -3631.5,
+   "slope": 3.96,
+   "sol": 4605
+  },
+  {
+   "lat": -4.8047401,
+   "lon": 137.3793204,
+   "elev": -3624.3,
+   "slope": 13.43,
+   "sol": 4609
+  },
+  {
+   "lat": -4.8049451,
+   "lon": 137.3792959,
+   "elev": -3623.5,
+   "slope": 10.04,
+   "sol": 4612
+  },
+  {
+   "lat": -4.805206,
+   "lon": 137.3794477,
+   "elev": -3622.4,
+   "slope": 6.59,
+   "sol": 4614
+  },
+  {
+   "lat": -4.8054528,
+   "lon": 137.3795247,
+   "elev": -3620.6,
+   "slope": 7.41,
+   "sol": 4616
+  },
+  {
+   "lat": -4.8054951,
+   "lon": 137.3795358,
+   "elev": -3620.5,
+   "slope": 9.85,
+   "sol": 4618
+  },
+  {
+   "lat": -4.8054139,
+   "lon": 137.3795125,
+   "elev": -3620.1,
+   "slope": 4.8,
+   "sol": 4621
+  },
+  {
+   "lat": -4.8054839,
+   "lon": 137.3799173,
+   "elev": -3621.6,
+   "slope": 7.41,
+   "sol": 4623
+  },
+  {
+   "lat": -4.8058591,
+   "lon": 137.3797583,
+   "elev": -3617.7,
+   "slope": 9.83,
+   "sol": 4625
+  },
+  {
+   "lat": -4.8059902,
+   "lon": 137.3794602,
+   "elev": -3613.9,
+   "slope": 11.82,
+   "sol": 4628
+  },
+  {
+   "lat": -4.8061668,
+   "lon": 137.379723,
+   "elev": -3614.0,
+   "slope": 12.08,
+   "sol": 4629
+  },
+  {
+   "lat": -4.806458,
+   "lon": 137.3796739,
+   "elev": -3611.2,
+   "slope": 13.64,
+   "sol": 4633
+  },
+  {
+   "lat": -4.8063562,
+   "lon": 137.3791167,
+   "elev": -3609.9,
+   "slope": 17.53,
+   "sol": 4634
+  },
+  {
+   "lat": -4.8065382,
+   "lon": 137.3793381,
+   "elev": -3607.1,
+   "slope": 13.27,
+   "sol": 4636
+  },
+  {
+   "lat": -4.8065533,
+   "lon": 137.3793171,
+   "elev": -3606.7,
+   "slope": 15.04,
+   "sol": 4639
+  },
+  {
+   "lat": -4.8066905,
+   "lon": 137.3793537,
+   "elev": -3608.1,
+   "slope": 13.3,
+   "sol": 4641
+  },
+  {
+   "lat": -4.8067965,
+   "lon": 137.3794121,
+   "elev": -3604.7,
+   "slope": 13.24,
+   "sol": 4643
+  },
+  {
+   "lat": -4.8068906,
+   "lon": 137.3798121,
+   "elev": -3610.5,
+   "slope": 8.33,
+   "sol": 4647
+  },
+  {
+   "lat": -4.8068928,
+   "lon": 137.3798418,
+   "elev": -3610.5,
+   "slope": 11.93,
+   "sol": 4650
+  },
+  {
+   "lat": -4.8070803,
+   "lon": 137.3798962,
+   "elev": -3608.0,
+   "slope": 10.0,
+   "sol": 4653
+  },
+  {
+   "lat": -4.8071683,
+   "lon": 137.3798956,
+   "elev": -3607.7,
+   "slope": 4.71,
+   "sol": 4655
+  },
+  {
+   "lat": -4.8074521,
+   "lon": 137.3800604,
+   "elev": -3605.5,
+   "slope": 8.2,
+   "sol": 4660
+  },
+  {
+   "lat": -4.8076276,
+   "lon": 137.3801893,
+   "elev": -3606.1,
+   "slope": 8.63,
+   "sol": 4662
+  },
+  {
+   "lat": -4.8079252,
+   "lon": 137.3802489,
+   "elev": -3605.2,
+   "slope": 5.63,
+   "sol": 4664
+  },
+  {
+   "lat": -4.8080233,
+   "lon": 137.3805074,
+   "elev": -3604.8,
+   "slope": 8.16,
+   "sol": 4667
+  },
+  {
+   "lat": -4.8080522,
+   "lon": 137.380883,
+   "elev": -3606.5,
+   "slope": 7.37,
+   "sol": 4669
+  },
+  {
+   "lat": -4.808271,
+   "lon": 137.3812695,
+   "elev": -3608.3,
+   "slope": 8.35,
+   "sol": 4671
+  },
+  {
+   "lat": -4.8087161,
+   "lon": 137.3815696,
+   "elev": -3606.6,
+   "slope": 8.61,
+   "sol": 4673
+  },
+  {
+   "lat": -4.8087123,
+   "lon": 137.3816902,
+   "elev": -3606.6,
+   "slope": 4.39,
+   "sol": 4677
+  },
+  {
+   "lat": -4.8082715,
+   "lon": 137.3812465,
+   "elev": -3608.0,
+   "slope": 8.87,
+   "sol": 4680
+  },
+  {
+   "lat": -4.808011,
+   "lon": 137.3810178,
+   "elev": -3607.9,
+   "slope": 9.26,
+   "sol": 4684
+  },
+  {
+   "lat": -4.8078392,
+   "lon": 137.3810353,
+   "elev": -3610.4,
+   "slope": 6.71,
+   "sol": 4687
+  },
+  {
+   "lat": -4.8079993,
+   "lon": 137.3810495,
+   "elev": -3608.7,
+   "slope": 9.65,
+   "sol": 4709
+  },
+  {
+   "lat": -4.8080076,
+   "lon": 137.3810041,
+   "elev": -3607.7,
+   "slope": 11.0,
+   "sol": 4711
+  },
+  {
+   "lat": -4.8077628,
+   "lon": 137.3810137,
+   "elev": -3611.5,
+   "slope": 12.23,
+   "sol": 4741
+  },
+  {
+   "lat": -4.807908,
+   "lon": 137.3811194,
+   "elev": -3610.3,
+   "slope": 14.12,
+   "sol": 4748
+  },
+  {
+   "lat": -4.8080317,
+   "lon": 137.3809929,
+   "elev": -3607.6,
+   "slope": 9.53,
+   "sol": 4752
+  },
+  {
+   "lat": -4.8080054,
+   "lon": 137.3809924,
+   "elev": -3608.0,
+   "slope": 11.46,
+   "sol": 4789
+  },
+  {
+   "lat": -4.8078367,
+   "lon": 137.38142,
+   "elev": -3610.9,
+   "slope": 4.38,
+   "sol": 4805
+  },
+  {
+   "lat": -4.8075379,
+   "lon": 137.3815047,
+   "elev": -3613.2,
+   "slope": 7.19,
+   "sol": 4810
+  },
+  {
+   "lat": -4.80735,
+   "lon": 137.381668,
+   "elev": -3615.7,
+   "slope": 11.49,
+   "sol": 4813
+  },
+  {
+   "lat": -4.8075257,
+   "lon": 137.38194,
+   "elev": -3615.2,
+   "slope": 6.68,
+   "sol": 4816
+  },
+  {
+   "lat": -4.8079036,
+   "lon": 137.3825624,
+   "elev": -3615.8,
+   "slope": 4.85,
+   "sol": 4818
+  },
+  {
+   "lat": -4.8077848,
+   "lon": 137.382671,
+   "elev": -3617.0,
+   "slope": 3.69,
+   "sol": 4820
+  }
+ ],
+ "stops": [
+  {
+   "id": 0,
+   "name": "Base",
+   "sol": 4596,
+   "mars": [
+    -4.803606,
+    137.380074
+   ],
+   "panorama": "assets/pano_stop0.jpg",
+   "task": "Base. Check suit and start the walk."
+  },
+  {
+   "id": 1,
+   "name": "First ridges",
+   "sol": 4618,
+   "mars": [
+    -4.805495,
+    137.379536
+   ],
+   "panorama": "assets/pano_stop1.jpg",
+   "task": "First boxwork ridges. Find the dark crack along a ridge top."
+  },
+  {
+   "id": 2,
+   "name": "Steep ridge",
+   "sol": 4639,
+   "mars": [
+    -4.806553,
+    137.379317
+   ],
+   "panorama": "assets/pano_stop2.jpg",
+   "task": "Steep ridge: walk slowly. Photograph the central fracture."
+  },
+  {
+   "id": 3,
+   "name": "Hollow",
+   "sol": 4655,
+   "mars": [
+    -4.807168,
+    137.379896
+   ],
+   "panorama": "assets/pano_stop3.jpg",
+   "task": "Sandy hollow between ridges. Look for nodules on the walls."
+  },
+  {
+   "id": 4,
+   "name": "Main site",
+   "sol": 4711,
+   "mars": [
+    -4.808008,
+    137.381004
+   ],
+   "panorama": "assets/pano_stop4.jpg",
+   "task": "Main site where Curiosity drilled. Collect paired samples."
+  },
+  {
+   "id": 5,
+   "name": "Exit",
+   "sol": 4820,
+   "mars": [
+    -4.807785,
+    137.382671
+   ],
+   "panorama": "assets/pano_stop5.jpg",
+   "task": "Exit to the sulfate layer. Take a context photo, then return."
+  }
+ ],
+ "suit": {
+  "walk_speed_mps": 0.8
+ }
+}
