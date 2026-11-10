@@ -1,0 +1,10 @@
+{
+  "name": "Mars Walk HUD",
+  "short_name": "Mars HUD",
+  "start_url": "/hud/",
+  "scope": "/",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#000000",
+  "theme_color": "#000000"
+}

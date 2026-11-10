@@ -44,19 +44,25 @@ export function createFieldSource({ doc = document, nav = navigator, win = windo
     if (!compassSeen && course != null && pos.coords.speed > MIN_SPEED_FOR_GPS_COURSE) heading = course;
   }
 
-  return {
+  const source = {
     frame: 'field',
+    gpsError: '',
     async start() {
       win.addEventListener('deviceorientationabsolute', onOrientation);
       win.addEventListener('deviceorientation', onOrientation);
+
+      // start GPS first, so a camera problem can't stop it
+      watchId = nav.geolocation.watchPosition((pos) => { source.gpsError = ''; onPosition(pos); }, (err) => {
+        source.gpsError = err.code === 1
+          ? 'Location blocked: allow it (iPhone: Settings > Privacy > Location Services > Safari Websites)'
+          : 'No GPS signal yet: go outside, away from buildings';
+      }, { enableHighAccuracy: true, maximumAge: 1000, timeout: 20000 });
 
       video.srcObject = await nav.mediaDevices.getUserMedia({
         video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 30 } },
         audio: false,
       });
       await video.play();
-
-      watchId = nav.geolocation.watchPosition(onPosition, () => {}, { enableHighAccuracy: true, maximumAge: 1000, timeout: 20000 });
     },
     stop() {
       win.removeEventListener('deviceorientationabsolute', onOrientation);
@@ -80,4 +86,5 @@ export function createFieldSource({ doc = document, nav = navigator, win = windo
       return new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', quality));
     },
   };
+  return source;
 }

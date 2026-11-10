@@ -7,7 +7,7 @@ export function createSimSource(sim, mission, view = 'single') {
       const box = document.createElement('div');
       box.style.cssText = `position:fixed;top:0;left:0;height:100%;width:${view === 'vr' ? '50%' : '100%'};z-index:-1;pointer-events:none`;  // one eye's shape
       document.body.appendChild(box);
-      await sim.start?.(mission, { container: box, assetsBase: '/mission/', stereo: false, autopilot: true, hud: true, hfovDeg: 62, lockPitch: true });
+      await sim.start?.(mission, { container: box, assetsBase: '/mission/', stereo: false, autopilot: false, hud: true, hfovDeg: 62, lockPitch: true });
       await sim.enableSensors?.();
     },
     stop() {

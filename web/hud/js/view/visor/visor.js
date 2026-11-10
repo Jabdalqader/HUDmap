@@ -16,7 +16,7 @@ export function drawVisorHud(ctx, w, h, s, images) {
   const cx = w / 2;
 
   if (!s.card && !s.waiting) drawGroundGuide(ctx, w, h, u, s);
-  drawVisorFrame(ctx, w, h);
+  drawVisorFrame(ctx, w, h, { vr: s.view === 'vr' });
 
   drawCompass(ctx, cx, 15 * row, Math.min(w * 0.46, 64 * u), u, s.heading ?? 0, s.targetBearing, s.mustReturn ? RED : AMBER);
   const alertRows = drawAlerts(ctx, cx, 24 * row, u, s);

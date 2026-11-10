@@ -16,6 +16,8 @@ const PHOTO_MS = 2000;
 const CARD_MS = 15000;
 const MESSAGE_MS = 12000;
 const GOOD_FIX_M = 20;
+// If no ±20 m fix comes, accept weaker ones after a while (indoors phones often get ±30–60 m).
+const FIX_STEPS = [[0, GOOD_FIX_M], [10000, 50], [25000, 120]];
 
 /**
  * The HUD's brain: position in, navigation, oxygen, alerts, cards and messages out.
@@ -63,6 +65,7 @@ export function createHudApp({
   }
 
   /** Sim walks on Mars directly. Field mode maps Mars to the desert; with no desert anchor, the first good GPS fix is base. */
+  let firstFixAt = null;
   function ensureWorld(position) {
     if (world) return true;
     if (source.frame === 'mars') {
@@ -71,7 +74,11 @@ export function createHudApp({
     }
     const anchor = { ...mission.anchor };
     if (!anchor.field) {
-      if (!position || position.accuracy > GOOD_FIX_M) return false;
+      if (!position) return false;
+      firstFixAt ??= clock();
+      const waited = clock() - firstFixAt;
+      const allowed = FIX_STEPS.filter(([t]) => waited >= t).at(-1)[1];
+      if (position.accuracy > allowed) return false;
       anchor.field = position.at;
       message = { text: 'Base set at this spot', fromGround: false, until: clock() + MESSAGE_MS };
     }
@@ -168,7 +175,7 @@ export function createHudApp({
   }
 
   function waitingText(position) {
-    if (!position) return source.frame === 'field' ? 'Waiting for GPS…' : 'Starting the sim…';
+    if (!position) return source.frame === 'field' ? (source.gpsError || 'Waiting for GPS…') : 'Starting the sim…';
     if (!world) return `Finding a good GPS fix (±${Math.round(position.accuracy)} m)…`;
     return null;
   }
@@ -198,6 +205,10 @@ export function createHudApp({
     getStatus: status,
     onTap() {
       voice.toggle();
+    },
+    /** Short message from the suit itself (not from Ground Control). */
+    notify(text) {
+      message = { text, fromGround: false, until: clock() + MESSAGE_MS };
     },
 
     /** What the renderer draws this frame. Heading is read fresh so the arrow turns smoothly. */

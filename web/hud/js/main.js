@@ -91,15 +91,33 @@ async function start(mode, view, motionAsked) {
   canvas.addEventListener('pointerdown', () => {
     pressStart = performance.now();
   });
+  // Sim mode: a tap (or the Cardboard button) starts / stops walking; the Bluetooth clicker talks to the AI.
+  // Field mode: you walk for real, so a tap talks to the AI.
+  const sim3d = mode === 'sim' && typeof source.sim?.setAutopilot === 'function' ? source.sim : null;
+  const toggleWalk = () => {
+    const walking = !sim3d.isAutopilot();
+    sim3d.setAutopilot(walking);
+    app.notify(walking ? 'Walking: tap to stop' : 'Stopped: tap to walk');
+  };
   canvas.addEventListener('pointerup', () => {
     if (performance.now() - pressStart >= LONG_PRESS_MS) demo.toggle();
+    else if (sim3d) toggleWalk();
     else app.onTap();
   });
+  if (sim3d) {
+    const VOICE_KEYS = new Set([' ', 'Enter', 'PageDown', 'PageUp', 'ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'v', 'V']);
+    window.addEventListener('keydown', (e) => {
+      if (!VOICE_KEYS.has(e.key) || e.repeat) return;
+      e.preventDefault();
+      app.onTap();
+    });
+  }
 
   window.hud = { getStatus: app.getStatus, demo: app.demo, standInLive: live.real ? null : live.part };
   console.info('[hud] mission', url, 'live', live.real ? 'real' : 'stand-in', 'voice', voice.real ? 'real' : 'stand-in');
   await Promise.race([document.fonts?.load?.('600 20px Rajdhani'), new Promise((resolve) => setTimeout(resolve, 1500))]);
   app.start();
+  if (sim3d) app.notify('Tap the screen to start walking');
   renderer.start();
   startScreen.hidden = true;
 }

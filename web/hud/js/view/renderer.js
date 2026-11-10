@@ -25,6 +25,7 @@ export function createRenderer({ canvas, getFrame, view = 'vr', maxPixelRatio = 
     if (!running) return;
     if (canvas.width !== Math.round(canvas.clientWidth * Math.min(win.devicePixelRatio || 1, maxPixelRatio))) resize();
     const { background, hud } = getFrame();
+    hud.view = currentView;
     if (hud.card) photo(hud.card.photo);
     const eyes = currentView === 'vr' ? 2 : 1;
     const eyeW = canvas.width / eyes;

@@ -31,7 +31,7 @@ COLS = range(115552, 115558)            # 6 tiles west -> east   (~970 m)
 ROWS = range(34514, 34522)              # 8 tiles north -> south (~1300 m)
 BASE = (-4.803606, 137.380074)          # stop 0 (lat, lon) = origin of the 3D world
 GRID_STEP = 4                           # one height sample every 4 photo pixels (~2.5 m)
-RELIEF_M = 0.8                          # max visual relief from the photo
+RELIEF_M = 1.4                          # max visual relief from the photo (boxwork ridges are 1-2 m tall)
 
 
 def tile(row, col):
