@@ -11,7 +11,8 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "check": "tsc --noEmit && vitest run",
-    "kb:export": "node scripts/export-knowledge-base.mjs"
+    "kb:export": "node scripts/export-knowledge-base.mjs",
+    "build:hud": "cp ../web/mission/mission.json src/data/mission.json && tsc --noEmit && VITE_MISSION_DATA_SOURCE=official vite build --config vite.hud.config.mjs"
   },
   "keywords": [],
   "author": "",

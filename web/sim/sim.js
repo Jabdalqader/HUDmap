@@ -227,7 +227,7 @@ function addRover(at) {
   g.rotation.y = 0.6;
   S.rover = { group: g, head };
   S.scene.add(g);
-  const label = makeLabel("Curiosity rover", "#ffffff"); label.position.set(0, 3.4, 0); g.add(label);
+  const label = makeLabel("Curiosity rover", "#ffffff"); label.position.set(0, 3.4, 0); label.visible = !S.opts.hud; g.add(label);
 }
 
 function addStops(mission) {
@@ -239,7 +239,7 @@ function addStops(mission) {
     const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 40, 16, 1, true), beamMat); beam.position.y = 20; grp.add(beam);
     const ringMat = new THREE.MeshBasicMaterial({ color: "#22d3ee", transparent: true, opacity: 0.8, side: THREE.DoubleSide, depthWrite: false });
     const ring = new THREE.Mesh(new THREE.RingGeometry(ARRIVE_M - 0.4, ARRIVE_M, 64).rotateX(-Math.PI / 2), ringMat); ring.position.y = 0.15; grp.add(ring);
-    const label = makeLabel(`${st.id} · ${st.name}`); label.position.y = 4; grp.add(label);
+    const label = makeLabel(`${st.id} · ${st.name}`); label.position.y = 4; label.visible = !S.opts.hud; grp.add(label);
     S.scene.add(grp);
     // the science rock to scan, a few metres from the beacon
     const ang = i * 1.7 + 0.5, rx = p.x + Math.cos(ang) * 3.2, rz = p.z + Math.sin(ang) * 3.2;
@@ -308,6 +308,8 @@ function resize() {
   const el = S.container, w = el.clientWidth, h = el.clientHeight;
   S.renderer.setSize(w, h, false);
   S.camera.aspect = (S.stereo ? w / 2 : w) / h;
+  // HUD mode: match the HUD's horizontal field of view so its pins sit on our beacons
+  if (S.opts.hfovDeg) S.camera.fov = 2 * Math.atan(Math.tan(S.opts.hfovDeg * DEG / 2) / S.camera.aspect) / DEG;
   S.camera.updateProjectionMatrix();
 }
 
@@ -363,6 +365,7 @@ function update(dt, now) {
   }
   S.pos.y = heightAt(S.pos.x, S.pos.z) + EYE_H + (walking ? Math.sin(S.bob) * 0.03 : 0);
   S.camera.position.copy(S.pos);
+  if (S.opts.lockPitch) S.pitch = 0;          // HUD mode: the HUD draws its horizon at mid-screen
   S.camera.rotation.set(S.pitch * DEG, -S.heading * DEG, 0, "YXZ");
   S.sky.position.set(S.pos.x, 0, S.pos.z);
   S.mountains.position.set(S.pos.x, 0, S.pos.z);
@@ -433,7 +436,7 @@ export const sim = {
     S.opts = { assetsBase: "../mission/", speed: 1, stereo: true, ...opts };
     S.stereo = S.opts.stereo;
     S.container = S.opts.container || document.body;
-    S.renderer = new THREE.WebGLRenderer({ antialias: true });
+    S.renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });  // HUD copies the picture
     S.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     S.renderer.domElement.style.cssText = "position:absolute;inset:0;width:100%;height:100%;display:block";
     S.container.appendChild(S.renderer.domElement);
@@ -480,8 +483,9 @@ export const sim = {
   getPosition() {
     const next = nextStopIndex(), s = S.stops[next];
     const last = S.visited.lastIndexOf(true);
+    const mars = S.toLatLon(S.pos.x, S.pos.z);
     return {
-      mars: S.toLatLon(S.pos.x, S.pos.z),
+      mars, lat: mars[0], lon: mars[1],
       heading: S.heading, pitch: S.pitch,
       stop: last, nextStop: next,
       dist_next_m: Math.hypot(S.pos.x - s.pos.x, S.pos.z - s.pos.z),
@@ -491,6 +495,10 @@ export const sim = {
   },
 
   on(name, fn) { (S.handlers[name] ||= []).push(fn); },
+  /** The 3D picture (a canvas) for the HUD to draw behind its overlay. */
+  getBackground() { return S.renderer?.domElement ?? null; },
+  /** Demo panel: jump next to a stop. */
+  jumpToStop(i) { this.teleport(Math.max(0, Math.min(S.stops.length - 1, i))); },
   event(type) { if (type === "dust") S.dustUntil = performance.now() + 20000; },
   setWalking(on) { S.walking = !!on; },
   /** Walk by yourself along the route, pausing at each beacon. You only look around. */

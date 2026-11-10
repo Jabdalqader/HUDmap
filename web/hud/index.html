@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script type="importmap">{ "imports": { "three": "/sim/vendor/three.module.min.js" } }</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Mars Walk HUD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/hud.css">
+</head>
+<body>
+<canvas id="hud" aria-label="Astronaut heads-up display"></canvas>
+
+<section id="start" class="start">
+  <h1>Mars Walk HUD</h1>
+  <p class="sub">Curiosity's boxwork route on Mount Sharp, walked on Earth.</p>
+  <fieldset>
+    <legend>Mode</legend>
+    <label><input type="radio" name="mode" value="field" checked> Field: camera and GPS</label>
+    <label><input type="radio" name="mode" value="sim"> Sim: practice walk</label>
+  </fieldset>
+  <fieldset>
+    <legend>View</legend>
+    <label><input type="radio" name="view" value="vr" checked> VR box (two eyes)</label>
+    <label><input type="radio" name="view" value="single"> Hand-held</label>
+  </fieldset>
+  <button id="go" type="button">Start the walk</button>
+  <p class="note">Android Chrome. Start asks for camera, location and motion access.</p>
+  <p id="startError" class="error" role="alert"></p>
+</section>
+
+<div id="demo" class="demo" hidden></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
