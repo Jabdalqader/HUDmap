@@ -1,0 +1,35 @@
+{
+  "mission_id": "mars-boxwork-demo",
+  "mission_name": "Mount Sharp Boxwork Exploration",
+  "location": "Mount Sharp, Mars",
+  "is_mock": true,
+  "stops": [
+    {
+      "id": 1,
+      "name": "Observation Point",
+      "description": "Demo observation area.",
+      "tasks": [
+        "Observe surrounding rock formations",
+        "Take photographs"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Steep ridge",
+      "description": "Demo location for geological observations.",
+      "tasks": [
+        "Observe ridge structures",
+        "Document visible patterns"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Boxwork Formation",
+      "description": "Demo location for studying boxwork.",
+      "tasks": [
+        "Observe intersecting ridges",
+        "Record geological observations"
+      ]
+    }
+  ]
+}

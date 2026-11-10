@@ -1,0 +1,35 @@
+*** MOCK / DEMONSTRATION DATA ***
+This document contains FICTIONAL placeholder mission data for development.
+It is NOT official NASA or mission-planning data.
+If asked, tell the astronaut that the official stop cards have not been provided yet.
+
+MISSION PLAN (MOCK)
+Mission: Mount Sharp Boxwork Exploration
+Mission ID: mars-boxwork-demo
+Location: Mount Sharp, Mars
+Number of planned stops: 3
+Planned stop order: 1. Observation Point -> 2. Steep ridge -> 3. Boxwork Formation
+
+STOP CARDS (MOCK)
+
+STOP 1: Observation Point
+Demo observation area.
+Planned tasks:
+- Observe surrounding rock formations
+- Take photographs
+
+STOP 2: Steep ridge
+Demo location for geological observations.
+Planned tasks:
+- Observe ridge structures
+- Document visible patterns
+
+STOP 3: Boxwork Formation
+Demo location for studying boxwork.
+Planned tasks:
+- Observe intersecting ridges
+- Record geological observations
+
+LIVE STATUS
+This document does not contain live values. For the current stop, distances,
+oxygen, radiation, temperature and return-to-base decisions, use the get_status tool.
