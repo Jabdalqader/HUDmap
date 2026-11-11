@@ -4,6 +4,7 @@ import { config } from './config.js';
 import { createFieldSource, requestMotionPermission } from './sources/field-source.js';
 import { createSimSource } from './sources/sim-source.js';
 import { createMarsWalkSource } from './sources/marswalk-source.js';
+import { startWakeWord } from './wake-word.js';
 import { createDemoPanel } from './view/demo-panel.js';
 import { createRenderer } from './view/renderer.js';
 import { createFakeLive } from '../dev/fake-live.js';
@@ -94,7 +95,9 @@ async function start(mode, view, motionAsked) {
   if (!(await motionAsked)) console.warn('[hud] motion access refused: using walking direction instead of the compass');
   await source.start();
 
-  const link = live.real ? { label: 'Habitat link', bars: 4 } : { label: 'Local only (stand-in)', bars: 1 };
+  const link = live.real
+    ? { label: `Ground Control code ${live.part.getRoom?.() ?? ''}`.trim(), bars: 4 }
+    : { label: 'Local only (stand-in)', bars: 1 };
   app = createHudApp({ mission, source, live: live.part, voice: voice.part, link });
   const canvas = document.getElementById('hud');
   const renderer = createRenderer({ canvas, getFrame: app.frame, view });
@@ -137,12 +140,14 @@ async function start(mode, view, motionAsked) {
     });
   }
 
-  window.hud = { getStatus: app.getStatus, demo: app.demo, standInLive: live.real ? null : live.part };
+  window.hud = { getStatus: app.getStatus, demo: app.demo, standInLive: live.real ? null : live.part, sim: source.world3d ?? source.sim ?? null };
   console.info('[hud] mission', url, 'live', live.real ? 'real' : 'stand-in', 'voice', voice.real ? 'real' : 'stand-in');
   await Promise.race([document.fonts?.load?.('600 20px Rajdhani'), new Promise((resolve) => setTimeout(resolve, 1500))]);
   app.start();
   if (sim3d) app.notify('Tap the screen to start walking');
   if (source.world3d) app.notify('Walk for real: GPS moves you on Mars');
+  // hands-free voice: "Hey suit" (only with the real voice agent, and unless ?wake=0)
+  if (voice.real && params.get('wake') !== '0') setTimeout(() => startWakeWord({ voice: voice.part, notify: app.notify }), 4000);
   renderer.start();
   startScreen.hidden = true;
 }
@@ -155,6 +160,8 @@ document.getElementById('go').addEventListener('click', () => {
   startError.textContent = '';
   const mode = chosen('mode');
   const motionAsked = requestMotionPermission();
+  // ask for the microphone inside the tap, so "Hey suit" works later without touching the phone
+  navigator.mediaDevices?.getUserMedia?.({ audio: true }).then((s) => s.getTracks().forEach((t) => t.stop())).catch(() => {});
   start(mode, chosen('view'), motionAsked).catch((error) => {
     startError.textContent = error.message || String(error);
   });
