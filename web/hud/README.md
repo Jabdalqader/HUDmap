@@ -61,3 +61,9 @@ See `CONTRACTS.md` for what the HUD needs from the other tasks.
 - The official `mission.json` lists the base as stop 0 with `"is_base": true`; `js/app.js` drops it (the base is `anchor.mars`).
 - `/live/live.js` (T1.5) is not built yet, so the HUD uses the stand-in in `dev/fake-live.js`.
 - Tests: `npm test` (33 pass).
+
+## Mars walk mode (real GPS + 3D Mars)
+Choose **Mars walk** on the start screen. You walk for real; GPS moves you on the 3D Mars (T1.3) and the compass turns your view. No touching needed: stop cards appear on arrival, the Bluetooth clicker talks to the AI.
+- Fit the Mars route to your space: `/hud/?scale=0.3` (desert metres per Mars metre; 0.3 ≈ 230 m of walking for the 750 m route), `&rotation=90` to turn it.
+- Test at a desk: `/hud/?mode=marswalk&fakegps=1` (pretend GPS walking at 1.2 m/s).
+- Safety: inside the VR box you can't see the real ground. Walk slowly on flat open ground, **with a spotter**.

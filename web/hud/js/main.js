@@ -3,6 +3,7 @@ import { createHudApp } from './app.js';
 import { config } from './config.js';
 import { createFieldSource, requestMotionPermission } from './sources/field-source.js';
 import { createSimSource } from './sources/sim-source.js';
+import { createMarsWalkSource } from './sources/marswalk-source.js';
 import { createDemoPanel } from './view/demo-panel.js';
 import { createRenderer } from './view/renderer.js';
 import { createFakeLive } from '../dev/fake-live.js';
@@ -18,7 +19,13 @@ async function loadMission() {
   for (const url of [params.get('mission') ?? config.mission, config.sampleMission]) {
     try {
       const response = await fetch(url, { cache: 'no-store' });
-      if (response.ok) return { mission: await response.json(), url };
+      if (response.ok) {
+        const mission = await response.json();
+        // fit the Mars route to the space you have: ?scale=0.3 (desert metres per Mars metre), ?rotation=90
+        if (params.has('scale')) mission.anchor.scale = Number(params.get('scale'));
+        if (params.has('rotation')) mission.anchor.rotation_deg = Number(params.get('rotation'));
+        return { mission, url };
+      }
     } catch {
       // try the next one
     }
@@ -61,6 +68,10 @@ async function enterFullscreen(view) {
 }
 
 async function start(mode, view, motionAsked) {
+  if (params.get('fakegps') === '1') {
+    const { installFakeGps } = await import('../dev/fake-gps.js');
+    installFakeGps({ lat: Number(params.get('lat') ?? 31.95), lon: Number(params.get('lon') ?? 35.91) });
+  }
   const { mission, url } = await loadMission();
   let app = null;
   const getStatus = () => app?.getStatus();
@@ -71,6 +82,9 @@ async function start(mode, view, motionAsked) {
   if (mode === 'sim') {
     const sim = await loadPart('sim', asSim, () => createFakeSim({ mission, speedFactor: Number(params.get('speed') ?? 1) }));
     source = createSimSource(sim.part, mission, view);
+  } else if (mode === 'marswalk') {
+    const sim = await loadPart('sim', asSim, () => null);
+    source = sim.real ? createMarsWalkSource(createFieldSource(), sim.part, mission, view) : createFieldSource();
   } else {
     source = createFieldSource();
   }
@@ -104,7 +118,17 @@ async function start(mode, view, motionAsked) {
     else if (sim3d) toggleWalk();
     else app.onTap();
   });
-  if (sim3d) {
+  // Mars walk: every frame, put the 3D Mars view where the real GPS puts you
+  if (source.world3d) {
+    const follow = () => {
+      const m = app.marsPosition();
+      if (m) source.world3d.setExternalPosition(m.mars, m.heading);
+      requestAnimationFrame(follow);
+    };
+    follow();
+  }
+  // The Bluetooth clicker talks to the AI (you can't touch the screen inside the VR box)
+  {
     const VOICE_KEYS = new Set([' ', 'Enter', 'PageDown', 'PageUp', 'ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'v', 'V']);
     window.addEventListener('keydown', (e) => {
       if (!VOICE_KEYS.has(e.key) || e.repeat) return;
@@ -118,6 +142,7 @@ async function start(mode, view, motionAsked) {
   await Promise.race([document.fonts?.load?.('600 20px Rajdhani'), new Promise((resolve) => setTimeout(resolve, 1500))]);
   app.start();
   if (sim3d) app.notify('Tap the screen to start walking');
+  if (source.world3d) app.notify('Walk for real: GPS moves you on Mars');
   renderer.start();
   startScreen.hidden = true;
 }

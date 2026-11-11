@@ -206,6 +206,13 @@ export function createHudApp({
     onTap() {
       voice.toggle();
     },
+    /** Where the astronaut is on Mars and which way they look on Mars (null until the base is set). */
+    marsPosition() {
+      const position = source.getPosition();
+      if (!world || !position) return null;
+      const rotation = mission.anchor.rotation_deg ?? 0;
+      return { mars: world.toMars(position.at), heading: (((position.heading - rotation) % 360) + 360) % 360 };
+    },
     /** Short message from the suit itself (not from Ground Control). */
     notify(text) {
       message = { text, fromGround: false, until: clock() + MESSAGE_MS };
