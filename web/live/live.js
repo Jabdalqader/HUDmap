@@ -10,7 +10,7 @@
 
 import { PEER_PREFIX, ICE } from "./live-config.js";
 export { PEER_PREFIX, ICE };
-const SNAP_MS = 2000, VIDEO_FPS = 15;
+const SNAP_MS = 2000, VIDEO_FPS = 15, PING_MS = 2000;
 
 const state = { peer: null, conns: new Set(), calls: new Set(), stream: null, onMessage: [], room: null, status: "starting" };
 
@@ -41,7 +41,8 @@ export const viewerCount = () => state.conns.size;
 
 function hudStream() {
   if (state.stream) return state.stream;
-  const canvas = document.getElementById("hud");
+  // one-eye copy made by the HUD renderer (falls back to the full screen)
+  const canvas = document.getElementById("hud-stream") || document.getElementById("hud");
   if (canvas?.captureStream) state.stream = canvas.captureStream(VIDEO_FPS);
   return state.stream;
 }
@@ -53,6 +54,7 @@ function send(msg) {
 function onData(msg) {
   if (!msg || typeof msg !== "object") return;
   if (msg.type === "message") state.onMessage.forEach((cb) => cb({ text: msg.text }));
+  if (msg.type === "want-video") callViewer(this);
   if (msg.type === "demo") window.hud?.demo?.[msg.name]?.();
   if (msg.type === "event") {
     if (msg.name === "dust") window.hud?.sim?.event?.("dust");
@@ -60,6 +62,15 @@ function onData(msg) {
     if (msg.name === "o2leak") window.hud?.demo?.oxygenLow?.();
     if (text) state.onMessage.forEach((cb) => cb({ text }));
   }
+}
+
+/** Send the live video to one Ground Control viewer (again if they ask). */
+function callViewer(conn) {
+  const stream = hudStream();
+  if (!stream || !state.peer) return;
+  const call = state.peer.call(conn.peer, stream);
+  state.calls.add(call);
+  call.on("close", () => state.calls.delete(call));
 }
 
 async function connect() {
@@ -71,28 +82,29 @@ async function connect() {
     conn.on("open", () => {
       state.conns.add(conn);
       state.status = "Ground Control connected";
-      const stream = hudStream();
-      if (stream) {
-        const call = peer.call(conn.peer, stream);
-        state.calls.add(call);
-        call.on("close", () => state.calls.delete(call));
-      }
+      callViewer(conn);
       conn.send({ type: "hello", room: getRoom() });
     });
-    conn.on("data", onData);
+    conn.on("data", onData.bind(conn));
     conn.on("close", () => { state.conns.delete(conn); if (!state.conns.size) state.status = "waiting for Ground Control"; });
   });
   peer.on("disconnected", () => { state.status = "reconnecting"; setTimeout(() => peer.reconnect(), 2000); });
   peer.on("error", (err) => {
     state.status = `link error: ${err.type}`;
     if (err.type === "unavailable-id") {            // an old tab still holds the code: retry in a moment
-      peer.destroy(); setTimeout(connect, 4000);
+      peer.destroy(); setTimeout(connect, 2000);
+    } else if (["network", "server-error", "socket-error", "socket-closed"].includes(err.type)) {
+      peer.destroy(); setTimeout(connect, 2000);    // lost the internet for a moment: start over
     }
   });
+  // free the room code at once when the page closes, so a reload reconnects fast
+  addEventListener("pagehide", () => peer.destroy(), { once: true });
+  // heartbeat: Ground Control notices a dead link within seconds and reconnects
+  setInterval(() => send({ type: "ping", t: Date.now() }), PING_MS);
   // backup picture for Ground Control if the video can't play
   setInterval(() => {
     if (!state.conns.size) return;
-    const canvas = document.getElementById("hud");
+    const canvas = document.getElementById("hud-stream") || document.getElementById("hud");
     if (!canvas) return;
     const w = 480, c = document.createElement("canvas");
     c.width = w; c.height = Math.round((canvas.height / canvas.width) * w) || 270;
@@ -122,3 +134,6 @@ export function onMessage(callback) {
   ensureStarted();
   state.onMessage.push(callback);
 }
+
+// connect as soon as the HUD page loads
+if (document.getElementById("hud")) ensureStarted();

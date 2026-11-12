@@ -4,7 +4,8 @@ import { PEER_PREFIX, ICE } from "../live/live-config.js";
 const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
 const video = $("video"), snap = $("snap"), noVideo = $("noVideo");
-let peer = null, conn = null, room = null, retryTimer = null, lastAlerts = new Set();
+let peer = null, conn = null, room = null, retryTimer = null, lastAlerts = new Set(), lastData = 0;
+const RETRY_MS = 1500, DEAD_MS = 6000;
 
 // ---------- log ----------
 function log(text, kind = "info") {
@@ -56,6 +57,8 @@ function onTelemetry(t) {
 function videoPlaying() { return video.srcObject && video.videoWidth > 0; }
 function onData(msg) {
   if (!msg || typeof msg !== "object") return;
+  lastData = Date.now();
+  if (msg.type === "ping") return;
   later(() => {
     if (msg.type === "telemetry") onTelemetry(msg);
     if (msg.type === "snap" && !videoPlaying()) {
@@ -77,9 +80,14 @@ function connect(code) {
   peer = new Peer({ config: ICE });
   peer.on("open", () => {
     conn = peer.connect(PEER_PREFIX + room, { reliable: true });
-    conn.on("open", () => { setLink(`connected · ${room}`, "on"); log("Connected", "info"); });
+    conn.on("open", () => {
+      lastData = Date.now();
+      setLink(`connected · ${room}`, "on"); log("Connected", "info");
+      // no video after 4 s? ask the phone to send it again
+      setTimeout(() => { if (!videoPlaying() && conn?.open) conn.send({ type: "want-video" }); }, 4000);
+    });
     conn.on("data", onData);
-    conn.on("close", () => { setLink("lost: retrying", "warn"); retryTimer = setTimeout(() => connect(room), 3000); });
+    conn.on("close", () => { setLink("lost: reconnecting", "warn"); retryTimer = setTimeout(() => connect(room), RETRY_MS); });
   });
   peer.on("call", (call) => {
     call.answer();
@@ -92,10 +100,19 @@ function connect(code) {
   peer.on("error", (err) => {
     if (err.type === "peer-unavailable") setLink("astronaut not online yet: retrying", "warn");
     else setLink(`error: ${err.type}`, "warn");
-    retryTimer = setTimeout(() => connect(room), 4000);
+    retryTimer = setTimeout(() => connect(room), RETRY_MS);
   });
 }
-$("join").addEventListener("submit", (e) => { e.preventDefault(); connect($("room").value); });
+// watchdog: no data (not even the heartbeat) for 6 s means the link is dead: reconnect
+setInterval(() => {
+  if (room && conn?.open && Date.now() - lastData > DEAD_MS) { log("Link silent: reconnecting", "alert"); connect(room); }
+  if (conn?.open && Date.now() - lastData > 2500) setLink(`weak link · ${Math.round((Date.now() - lastData) / 1000)} s`, "warn");
+  else if (conn?.open) setLink(`connected · ${room}`, "on");
+}, 1000);
+async function allowLocalNetwork() {
+  try { (await navigator.mediaDevices.getUserMedia({ audio: true })).getTracks().forEach((t) => t.stop()); } catch { /* fine */ }
+}
+$("join").addEventListener("submit", async (e) => { e.preventDefault(); await allowLocalNetwork(); connect($("room").value); });
 if (params.get("room")) { $("room").value = params.get("room"); connect(params.get("room")); }
 
 // ---------- outgoing ----------

@@ -1,8 +1,16 @@
 import { drawBackground, drawHud } from './draw-hud.js';
+import { eyeRects } from './vr-layout.js';
 
 /** Draws the background + HUD once (hand-held) or twice side by side (VR box) every frame. */
 export function createRenderer({ canvas, getFrame, view = 'vr', maxPixelRatio = 1.5, win = window }) {
   const ctx = canvas.getContext('2d');
+  // what Ground Control sees: one eye, copied every frame (live.js streams this canvas)
+  const streamCanvas = document.createElement('canvas');
+  streamCanvas.id = 'hud-stream';
+  streamCanvas.width = 960; streamCanvas.height = 540;
+  streamCanvas.style.cssText = 'position:fixed;left:-10000px;top:0;width:2px;height:2px;pointer-events:none';
+  document.body.appendChild(streamCanvas);
+  const streamCtx = streamCanvas.getContext('2d');
   const images = new Map();
   let running = false;
   let currentView = view;
@@ -27,22 +35,22 @@ export function createRenderer({ canvas, getFrame, view = 'vr', maxPixelRatio = 
     const { background, hud } = getFrame();
     hud.view = currentView;
     if (hud.card) photo(hud.card.photo);
-    const eyes = currentView === 'vr' ? 2 : 1;
-    const eyeW = canvas.width / eyes;
-    for (let i = 0; i < eyes; i++) {
+    const rects = eyeRects(canvas.width, canvas.height, currentView);
+    if (rects.length > 1) { ctx.fillStyle = '#000'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+    for (const r of rects) {
       ctx.save();
       ctx.beginPath();
-      ctx.rect(i * eyeW, 0, eyeW, canvas.height);
+      ctx.rect(r.x, r.y, r.w, r.h);
       ctx.clip();
-      ctx.translate(i * eyeW, 0);
-      drawBackground(ctx, eyeW, canvas.height, background);
-      drawHud(ctx, eyeW, canvas.height, hud, images);
+      ctx.translate(r.x, r.y);
+      drawBackground(ctx, r.w, r.h, background);
+      drawHud(ctx, r.w, r.h, hud, images);
       ctx.restore();
     }
-    if (eyes === 2) {
-      ctx.fillStyle = '#000';
-      ctx.fillRect(eyeW - 1, 0, 2, canvas.height);
-    }
+    // Ground Control gets ONE view (the left eye), not the two-eye split
+    const e = rects[0], sw = 960, sh = Math.round((e.h / e.w) * sw);
+    if (streamCanvas.width !== sw || streamCanvas.height !== sh) { streamCanvas.width = sw; streamCanvas.height = sh; }
+    streamCtx.drawImage(canvas, e.x, e.y, e.w, e.h, 0, 0, sw, sh);
     win.requestAnimationFrame(frame);
   }
 
