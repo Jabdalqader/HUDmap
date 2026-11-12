@@ -1,0 +1,849 @@
+{
+ "mission_id": "boxwork-01",
+ "mission_name": "Mount Sharp Boxwork Walk",
+ "location": "Mount Sharp boxwork, Gale Crater, Mars",
+ "site": "Mount Sharp boxwork, Gale Crater, Mars",
+ "is_mock": false,
+ "mars_radius_m": 3396190.0,
+ "anchor": {
+  "mars": [
+   -4.803606,
+   137.380074
+  ],
+  "field": null,
+  "rotation_deg": 0,
+  "scale": 1.0
+ },
+ "route": [
+  {
+   "lat": -4.8036058,
+   "lon": 137.3800743,
+   "mars": [
+    -4.8036058,
+    137.3800743
+   ],
+   "sol": 4596,
+   "elev": -3640.5,
+   "slope": 6.54,
+   "slope_deg": 8.6
+  },
+  {
+   "lat": -4.804016,
+   "lon": 137.3797556,
+   "mars": [
+    -4.804016,
+    137.3797556
+   ],
+   "sol": 4598,
+   "elev": -3635.9,
+   "slope": 9.21,
+   "slope_deg": 15.1
+  },
+  {
+   "lat": -4.804189,
+   "lon": 137.3796858,
+   "mars": [
+    -4.804189,
+    137.3796858
+   ],
+   "sol": 4600,
+   "elev": -3632.9,
+   "slope": 16.96,
+   "slope_deg": 13.6
+  },
+  {
+   "lat": -4.8043668,
+   "lon": 137.3796237,
+   "mars": [
+    -4.8043668,
+    137.3796237
+   ],
+   "sol": 4602,
+   "elev": -3630.8,
+   "slope": 6.81,
+   "slope_deg": 7.4
+  },
+  {
+   "lat": -4.8044334,
+   "lon": 137.3795572,
+   "mars": [
+    -4.8044334,
+    137.3795572
+   ],
+   "sol": 4605,
+   "elev": -3631.5,
+   "slope": 3.96,
+   "slope_deg": 17.3
+  },
+  {
+   "lat": -4.8047401,
+   "lon": 137.3793204,
+   "mars": [
+    -4.8047401,
+    137.3793204
+   ],
+   "sol": 4609,
+   "elev": -3624.3,
+   "slope": 13.43,
+   "slope_deg": 10.7
+  },
+  {
+   "lat": -4.8049451,
+   "lon": 137.3792959,
+   "mars": [
+    -4.8049451,
+    137.3792959
+   ],
+   "sol": 4612,
+   "elev": -3623.5,
+   "slope": 10.04,
+   "slope_deg": 8.0
+  },
+  {
+   "lat": -4.805206,
+   "lon": 137.3794477,
+   "mars": [
+    -4.805206,
+    137.3794477
+   ],
+   "sol": 4614,
+   "elev": -3622.4,
+   "slope": 6.59,
+   "slope_deg": 6.6
+  },
+  {
+   "lat": -4.8054528,
+   "lon": 137.3795247,
+   "mars": [
+    -4.8054528,
+    137.3795247
+   ],
+   "sol": 4616,
+   "elev": -3620.6,
+   "slope": 7.41,
+   "slope_deg": 5.9
+  },
+  {
+   "lat": -4.8054951,
+   "lon": 137.3795358,
+   "mars": [
+    -4.8054951,
+    137.3795358
+   ],
+   "sol": 4618,
+   "elev": -3620.5,
+   "slope": 9.85,
+   "slope_deg": 7.9
+  },
+  {
+   "lat": -4.8054139,
+   "lon": 137.3795125,
+   "mars": [
+    -4.8054139,
+    137.3795125
+   ],
+   "sol": 4621,
+   "elev": -3620.1,
+   "slope": 4.8,
+   "slope_deg": 3.8
+  },
+  {
+   "lat": -4.8054839,
+   "lon": 137.3799173,
+   "mars": [
+    -4.8054839,
+    137.3799173
+   ],
+   "sol": 4623,
+   "elev": -3621.6,
+   "slope": 7.41,
+   "slope_deg": 9.3
+  },
+  {
+   "lat": -4.8058591,
+   "lon": 137.3797583,
+   "mars": [
+    -4.8058591,
+    137.3797583
+   ],
+   "sol": 4625,
+   "elev": -3617.7,
+   "slope": 9.83,
+   "slope_deg": 11.0
+  },
+  {
+   "lat": -4.8059902,
+   "lon": 137.3794602,
+   "mars": [
+    -4.8059902,
+    137.3794602
+   ],
+   "sol": 4628,
+   "elev": -3613.9,
+   "slope": 11.82,
+   "slope_deg": 9.5
+  },
+  {
+   "lat": -4.8061668,
+   "lon": 137.379723,
+   "mars": [
+    -4.8061668,
+    137.379723
+   ],
+   "sol": 4629,
+   "elev": -3614.0,
+   "slope": 12.08,
+   "slope_deg": 9.7
+  },
+  {
+   "lat": -4.806458,
+   "lon": 137.3796739,
+   "mars": [
+    -4.806458,
+    137.3796739
+   ],
+   "sol": 4633,
+   "elev": -3611.2,
+   "slope": 13.64,
+   "slope_deg": 10.9
+  },
+  {
+   "lat": -4.8063562,
+   "lon": 137.3791167,
+   "mars": [
+    -4.8063562,
+    137.3791167
+   ],
+   "sol": 4634,
+   "elev": -3609.9,
+   "slope": 17.53,
+   "slope_deg": 14.0
+  },
+  {
+   "lat": -4.8065382,
+   "lon": 137.3793381,
+   "mars": [
+    -4.8065382,
+    137.3793381
+   ],
+   "sol": 4636,
+   "elev": -3607.1,
+   "slope": 13.27,
+   "slope_deg": 14.9
+  },
+  {
+   "lat": -4.8065533,
+   "lon": 137.3793171,
+   "mars": [
+    -4.8065533,
+    137.3793171
+   ],
+   "sol": 4639,
+   "elev": -3606.7,
+   "slope": 15.04,
+   "slope_deg": 12.0
+  },
+  {
+   "lat": -4.8066905,
+   "lon": 137.3793537,
+   "mars": [
+    -4.8066905,
+    137.3793537
+   ],
+   "sol": 4641,
+   "elev": -3608.1,
+   "slope": 13.3,
+   "slope_deg": 25.6
+  },
+  {
+   "lat": -4.8067965,
+   "lon": 137.3794121,
+   "mars": [
+    -4.8067965,
+    137.3794121
+   ],
+   "sol": 4643,
+   "elev": -3604.7,
+   "slope": 13.24,
+   "slope_deg": 13.5
+  },
+  {
+   "lat": -4.8068906,
+   "lon": 137.3798121,
+   "mars": [
+    -4.8068906,
+    137.3798121
+   ],
+   "sol": 4647,
+   "elev": -3610.5,
+   "slope": 8.33,
+   "slope_deg": 6.7
+  },
+  {
+   "lat": -4.8068928,
+   "lon": 137.3798418,
+   "mars": [
+    -4.8068928,
+    137.3798418
+   ],
+   "sol": 4650,
+   "elev": -3610.5,
+   "slope": 11.93,
+   "slope_deg": 12.3
+  },
+  {
+   "lat": -4.8070803,
+   "lon": 137.3798962,
+   "mars": [
+    -4.8070803,
+    137.3798962
+   ],
+   "sol": 4653,
+   "elev": -3608.0,
+   "slope": 10.0,
+   "slope_deg": 8.0
+  },
+  {
+   "lat": -4.8071683,
+   "lon": 137.3798956,
+   "mars": [
+    -4.8071683,
+    137.3798956
+   ],
+   "sol": 4655,
+   "elev": -3607.7,
+   "slope": 4.71,
+   "slope_deg": 6.5
+  },
+  {
+   "lat": -4.8074521,
+   "lon": 137.3800604,
+   "mars": [
+    -4.8074521,
+    137.3800604
+   ],
+   "sol": 4660,
+   "elev": -3605.5,
+   "slope": 8.2,
+   "slope_deg": 6.6
+  },
+  {
+   "lat": -4.8076276,
+   "lon": 137.3801893,
+   "mars": [
+    -4.8076276,
+    137.3801893
+   ],
+   "sol": 4662,
+   "elev": -3606.1,
+   "slope": 8.63,
+   "slope_deg": 6.9
+  },
+  {
+   "lat": -4.8079252,
+   "lon": 137.3802489,
+   "mars": [
+    -4.8079252,
+    137.3802489
+   ],
+   "sol": 4664,
+   "elev": -3605.2,
+   "slope": 5.63,
+   "slope_deg": 4.5
+  },
+  {
+   "lat": -4.8080233,
+   "lon": 137.3805074,
+   "mars": [
+    -4.8080233,
+    137.3805074
+   ],
+   "sol": 4667,
+   "elev": -3604.8,
+   "slope": 8.16,
+   "slope_deg": 6.5
+  },
+  {
+   "lat": -4.8080522,
+   "lon": 137.380883,
+   "mars": [
+    -4.8080522,
+    137.380883
+   ],
+   "sol": 4669,
+   "elev": -3606.5,
+   "slope": 7.37,
+   "slope_deg": 5.9
+  },
+  {
+   "lat": -4.808271,
+   "lon": 137.3812695,
+   "mars": [
+    -4.808271,
+    137.3812695
+   ],
+   "sol": 4671,
+   "elev": -3608.3,
+   "slope": 8.35,
+   "slope_deg": 6.7
+  },
+  {
+   "lat": -4.8087161,
+   "lon": 137.3815696,
+   "mars": [
+    -4.8087161,
+    137.3815696
+   ],
+   "sol": 4673,
+   "elev": -3606.6,
+   "slope": 8.61,
+   "slope_deg": 6.9
+  },
+  {
+   "lat": -4.8087123,
+   "lon": 137.3816902,
+   "mars": [
+    -4.8087123,
+    137.3816902
+   ],
+   "sol": 4677,
+   "elev": -3606.6,
+   "slope": 4.39,
+   "slope_deg": 3.5
+  },
+  {
+   "lat": -4.8082715,
+   "lon": 137.3812465,
+   "mars": [
+    -4.8082715,
+    137.3812465
+   ],
+   "sol": 4680,
+   "elev": -3608.0,
+   "slope": 8.87,
+   "slope_deg": 7.1
+  },
+  {
+   "lat": -4.808011,
+   "lon": 137.3810178,
+   "mars": [
+    -4.808011,
+    137.3810178
+   ],
+   "sol": 4684,
+   "elev": -3607.9,
+   "slope": 9.26,
+   "slope_deg": 13.7
+  },
+  {
+   "lat": -4.8078392,
+   "lon": 137.3810353,
+   "mars": [
+    -4.8078392,
+    137.3810353
+   ],
+   "sol": 4687,
+   "elev": -3610.4,
+   "slope": 6.71,
+   "slope_deg": 10.4
+  },
+  {
+   "lat": -4.8079993,
+   "lon": 137.3810495,
+   "mars": [
+    -4.8079993,
+    137.3810495
+   ],
+   "sol": 4709,
+   "elev": -3608.7,
+   "slope": 9.65,
+   "slope_deg": 19.5
+  },
+  {
+   "lat": -4.8080076,
+   "lon": 137.3810041,
+   "mars": [
+    -4.8080076,
+    137.3810041
+   ],
+   "sol": 4711,
+   "elev": -3607.7,
+   "slope": 11.0,
+   "slope_deg": 14.7
+  },
+  {
+   "lat": -4.8077628,
+   "lon": 137.3810137,
+   "mars": [
+    -4.8077628,
+    137.3810137
+   ],
+   "sol": 4741,
+   "elev": -3611.5,
+   "slope": 12.23,
+   "slope_deg": 9.8
+  },
+  {
+   "lat": -4.807908,
+   "lon": 137.3811194,
+   "mars": [
+    -4.807908,
+    137.3811194
+   ],
+   "sol": 4748,
+   "elev": -3610.3,
+   "slope": 14.12,
+   "slope_deg": 14.2
+  },
+  {
+   "lat": -4.8080317,
+   "lon": 137.3809929,
+   "mars": [
+    -4.8080317,
+    137.3809929
+   ],
+   "sol": 4752,
+   "elev": -3607.6,
+   "slope": 9.53,
+   "slope_deg": 13.3
+  },
+  {
+   "lat": -4.8080054,
+   "lon": 137.3809924,
+   "mars": [
+    -4.8080054,
+    137.3809924
+   ],
+   "sol": 4789,
+   "elev": -3608.0,
+   "slope": 11.46,
+   "slope_deg": 9.2
+  },
+  {
+   "lat": -4.8078367,
+   "lon": 137.38142,
+   "mars": [
+    -4.8078367,
+    137.38142
+   ],
+   "sol": 4805,
+   "elev": -3610.9,
+   "slope": 4.38,
+   "slope_deg": 7.1
+  },
+  {
+   "lat": -4.8075379,
+   "lon": 137.3815047,
+   "mars": [
+    -4.8075379,
+    137.3815047
+   ],
+   "sol": 4810,
+   "elev": -3613.2,
+   "slope": 7.19,
+   "slope_deg": 9.8
+  },
+  {
+   "lat": -4.80735,
+   "lon": 137.381668,
+   "mars": [
+    -4.80735,
+    137.381668
+   ],
+   "sol": 4813,
+   "elev": -3615.7,
+   "slope": 11.49,
+   "slope_deg": 9.2
+  },
+  {
+   "lat": -4.8075257,
+   "lon": 137.38194,
+   "mars": [
+    -4.8075257,
+    137.38194
+   ],
+   "sol": 4816,
+   "elev": -3615.2,
+   "slope": 6.68,
+   "slope_deg": 5.3
+  },
+  {
+   "lat": -4.8079036,
+   "lon": 137.3825624,
+   "mars": [
+    -4.8079036,
+    137.3825624
+   ],
+   "sol": 4818,
+   "elev": -3615.8,
+   "slope": 4.85,
+   "slope_deg": 7.0
+  },
+  {
+   "lat": -4.8077848,
+   "lon": 137.382671,
+   "mars": [
+    -4.8077848,
+    137.382671
+   ],
+   "sol": 4820,
+   "elev": -3617.0,
+   "slope": 3.69,
+   "slope_deg": 3.0
+  }
+ ],
+ "layers": [
+  {
+   "id": "hirise",
+   "name": "Photo",
+   "mission": "MRO",
+   "instrument": "HiRISE",
+   "kind": "optical",
+   "tiles": "https://trek.nasa.gov/tiles/Mars/EQ/curiosity_hirise_mosaic/1.0.0/default/default028mm/{z}/{y}/{x}.png"
+  },
+  {
+   "id": "route",
+   "name": "Route slope",
+   "mission": "MSL",
+   "instrument": "Curiosity waypoints",
+   "kind": "topographic"
+  },
+  {
+   "id": "weather",
+   "name": "Weather + radiation",
+   "mission": "MSL",
+   "instrument": "REMS / RAD",
+   "kind": "atmospheric"
+  }
+ ],
+ "stops": [
+  {
+   "id": 0,
+   "name": "Base",
+   "is_base": true,
+   "mars": [
+    -4.803606,
+    137.380074
+   ],
+   "field": null,
+   "sol": 4596,
+   "slope_deg": 6.54,
+   "hazard": "None",
+   "task": "Suit check, then start the walk.",
+   "tasks": [
+    "Suit check, then start the walk."
+   ],
+   "science": "Edge of the boxwork field: from here low ridges spread out like a spiderweb.",
+   "description": "Edge of the boxwork field: from here low ridges spread out like a spiderweb.",
+   "temp_c": -51,
+   "rad_uSv_h": 27.9,
+   "conditions": {
+    "temp_c": -51,
+    "pressure_pa": 745,
+    "rad_uSv_h": 27.9,
+    "source": "REMS sol 4596 (average of min -80 / max -22 \u00b0C, pressure); RAD surface average"
+   },
+   "photo": "/mission/assets/stop0.jpg",
+   "photos": [
+    "assets/stop0.jpg"
+   ],
+   "panorama": "assets/pano_stop0.jpg",
+   "sources": [
+    "Curiosity waypoints (MMGIS)",
+    "Curiosity Navcam sol 4596",
+    "Curiosity REMS sol 4596",
+    "NASA/JPL boxwork article 2026-02-23"
+   ]
+  },
+  {
+   "id": 1,
+   "name": "First ridges",
+   "mars": [
+    -4.805495,
+    137.379536
+   ],
+   "field": null,
+   "sol": 4618,
+   "slope_deg": 9.85,
+   "hazard": "Loose sand at the foot of the ridge",
+   "task": "Find the dark crack along a ridge top.",
+   "tasks": [
+    "Find the dark crack along a ridge top."
+   ],
+   "science": "Boxwork is a web of low ridges. Groundwater flowed through cracks and left minerals that hardened them; wind later wore away the softer rock in between.",
+   "description": "Boxwork is a web of low ridges. Groundwater flowed through cracks and left minerals that hardened them; wind later wore away the softer rock in between.",
+   "temp_c": -48,
+   "rad_uSv_h": 27.9,
+   "conditions": {
+    "temp_c": -48,
+    "pressure_pa": 721,
+    "rad_uSv_h": 27.9,
+    "source": "REMS sol 4618 (average of min -81 / max -15 \u00b0C, pressure); RAD surface average"
+   },
+   "photo": "/mission/assets/stop1.jpg",
+   "photos": [
+    "assets/stop1.jpg"
+   ],
+   "panorama": "assets/pano_stop1.jpg",
+   "sources": [
+    "Curiosity waypoints (MMGIS)",
+    "Curiosity Navcam sol 4618",
+    "Curiosity REMS sol 4618",
+    "NASA/JPL boxwork article 2026-02-23"
+   ]
+  },
+  {
+   "id": 2,
+   "name": "Steep ridge",
+   "mars": [
+    -4.806553,
+    137.379317
+   ],
+   "field": null,
+   "sol": 4639,
+   "slope_deg": 15.04,
+   "hazard": "Steep slope (about 15 degrees): walk slowly",
+   "task": "Photograph the central fracture along the ridge top.",
+   "tasks": [
+    "Photograph the central fracture along the ridge top."
+   ],
+   "science": "The dark line along the ridge is a fracture where groundwater flowed and concentrated minerals.",
+   "description": "The dark line along the ridge is a fracture where groundwater flowed and concentrated minerals.",
+   "temp_c": -48,
+   "rad_uSv_h": 27.9,
+   "conditions": {
+    "temp_c": -48,
+    "pressure_pa": 703,
+    "rad_uSv_h": 27.9,
+    "source": "REMS sol 4639 (average of min -79 / max -18 \u00b0C, pressure); RAD surface average"
+   },
+   "photo": "/mission/assets/stop2.jpg",
+   "photos": [
+    "assets/stop2.jpg"
+   ],
+   "panorama": "assets/pano_stop2.jpg",
+   "sources": [
+    "Curiosity waypoints (MMGIS)",
+    "Curiosity Navcam sol 4639",
+    "Curiosity REMS sol 4639",
+    "NASA/JPL boxwork article 2026-02-23"
+   ]
+  },
+  {
+   "id": 3,
+   "name": "Hollow",
+   "mars": [
+    -4.807168,
+    137.379896
+   ],
+   "field": null,
+   "sol": 4655,
+   "slope_deg": 4.71,
+   "hazard": "Soft sand in the hollow",
+   "task": "Look for small round nodules on the ridge walls.",
+   "tasks": [
+    "Look for small round nodules on the ridge walls."
+   ],
+   "science": "Curiosity found nodules along ridge walls and in hollows but not near the fractures, which is still unexplained.",
+   "description": "Curiosity found nodules along ridge walls and in hollows but not near the fractures, which is still unexplained.",
+   "temp_c": -44,
+   "rad_uSv_h": 27.9,
+   "conditions": {
+    "temp_c": -44,
+    "pressure_pa": 692,
+    "rad_uSv_h": 27.9,
+    "source": "REMS sol 4655 (average of min -79 / max -8 \u00b0C, pressure); RAD surface average"
+   },
+   "photo": "/mission/assets/stop3.jpg",
+   "photos": [
+    "assets/stop3.jpg"
+   ],
+   "panorama": "assets/pano_stop3.jpg",
+   "sources": [
+    "Curiosity waypoints (MMGIS)",
+    "Curiosity Navcam sol 4655",
+    "Curiosity REMS sol 4655",
+    "NASA/JPL boxwork article 2026-02-23"
+   ]
+  },
+  {
+   "id": 4,
+   "name": "Main site",
+   "mars": [
+    -4.808008,
+    137.381004
+   ],
+   "field": null,
+   "sol": 4711,
+   "slope_deg": 11.46,
+   "hazard": "Sharp rock edges",
+   "task": "Collect paired samples: one from a ridge, one from the hollow.",
+   "tasks": [
+    "Collect paired samples: one from a ridge, one from the hollow."
+   ],
+   "science": "Curiosity drilled here and found clay minerals in a ridge and carbonate minerals in a hollow.",
+   "description": "Curiosity drilled here and found clay minerals in a ridge and carbonate minerals in a hollow.",
+   "temp_c": -39,
+   "rad_uSv_h": 27.9,
+   "conditions": {
+    "temp_c": -39,
+    "pressure_pa": 692,
+    "rad_uSv_h": 27.9,
+    "source": "REMS sol 4711 (average of min -74 / max -4 \u00b0C, pressure); RAD surface average"
+   },
+   "photo": "/mission/assets/stop4.jpg",
+   "photos": [
+    "assets/stop4.jpg"
+   ],
+   "panorama": "assets/pano_stop4.jpg",
+   "sources": [
+    "Curiosity waypoints (MMGIS)",
+    "Curiosity Navcam sol 4711",
+    "Curiosity REMS sol 4711",
+    "NASA/JPL boxwork article 2026-02-23"
+   ]
+  },
+  {
+   "id": 5,
+   "name": "Exit",
+   "mars": [
+    -4.807785,
+    137.382671
+   ],
+   "field": null,
+   "sol": 4820,
+   "slope_deg": 3.69,
+   "hazard": "Long walk back to base",
+   "task": "Take a context photo of the sulfate layer, then return to base.",
+   "tasks": [
+    "Take a context photo of the sulfate layer, then return to base."
+   ],
+   "science": "The boxwork sits in a layer rich in salty sulfate minerals that Curiosity keeps exploring.",
+   "description": "The boxwork sits in a layer rich in salty sulfate minerals that Curiosity keeps exploring.",
+   "temp_c": -36,
+   "rad_uSv_h": 27.9,
+   "conditions": {
+    "temp_c": -36,
+    "pressure_pa": 837,
+    "rad_uSv_h": 27.9,
+    "source": "REMS sol 4820 (average of min -68 / max -4 \u00b0C, pressure); RAD surface average"
+   },
+   "photo": "/mission/assets/stop5.jpg",
+   "photos": [
+    "assets/stop5.jpg"
+   ],
+   "panorama": "assets/pano_stop5.jpg",
+   "sources": [
+    "Curiosity waypoints (MMGIS)",
+    "Curiosity Navcam sol 4820",
+    "Curiosity REMS sol 4820",
+    "NASA/JPL boxwork article 2026-02-23"
+   ]
+  }
+ ],
+ "suit": {
+  "o2_start_pct": 100,
+  "o2_pct_per_min": 0.25,
+  "walk_speed_mps": 0.8
+ }
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ground Control · Mars Walk</title>
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="gc.css">
+</head>
+<body>
+<header>
+  <div class="brand">GROUND CONTROL <span>Mount Sharp boxwork · Gale Crater</span></div>
+  <form id="join">
+    <label>Room code <input id="room" placeholder="e.g. K7Q2XM" autocomplete="off" maxlength="10"></label>
+    <button>Connect</button>
+    <span id="link" class="pill off">not connected</span>
+  </form>
+</header>
+
+<main>
+  <section class="view">
+    <div class="label">ASTRONAUT VIEW <span id="viewMode">—</span></div>
+    <div class="screen">
+      <video id="video" autoplay playsinline muted></video>
+      <img id="snap" alt="">
+      <div id="noVideo">Waiting for the astronaut…<br><small>Open the HUD on the phone, then type the code shown under COMMS.</small></div>
+    </div>
+  </section>
+
+  <section class="map">
+    <div class="label">MARS MAP <span>HiRISE (MRO) · Curiosity route</span></div>
+    <div id="map"></div>
+  </section>
+
+  <section class="panel readouts">
+    <div class="tile"><b id="o2">—</b><span>Oxygen</span></div>
+    <div class="tile"><b id="rad">—</b><span>Radiation µSv</span></div>
+    <div class="tile"><b id="stop">—</b><span>Next stop</span></div>
+    <div class="tile"><b id="dnext">—</b><span>To next stop</span></div>
+    <div class="tile"><b id="dbase">—</b><span>To base</span></div>
+    <div class="tile"><b id="heading">—</b><span>Heading</span></div>
+  </section>
+
+  <section class="panel controls">
+    <div class="label">MESSAGE TO ASTRONAUT</div>
+    <form id="msgForm"><input id="msg" placeholder="Type a message…" autocomplete="off"><button>Send</button></form>
+    <div class="row">
+      <label class="switch"><input type="checkbox" id="delayOn"> Mars delay</label>
+      <select id="delaySec"><option value="20">20 s (demo)</option><option value="60">1 min</option><option value="186">3.1 min (closest)</option><option value="1335">22 min (farthest)</option></select>
+    </div>
+    <div class="row events">
+      <button data-event="dust">Dust storm</button>
+      <button data-event="solar">Solar storm</button>
+      <button data-event="o2leak">O₂ leak</button>
+      <button data-demo="steepGround">Steep ground</button>
+    </div>
+  </section>
+
+  <section class="panel log">
+    <div class="label">ALERT LOG</div>
+    <ol id="log"></ol>
+  </section>
+</main>
+
+<script src="vendor/leaflet.js"></script>
+<script src="../live/vendor/peerjs.min.js"></script>
+<script type="module" src="gc.js"></script>
+</body>
+</html>

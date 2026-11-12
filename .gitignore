@@ -19,3 +19,6 @@ service-account*.json
 
 # OS
 .DS_Store
+
+# local link server certificate (made on first run)
+server/certs/

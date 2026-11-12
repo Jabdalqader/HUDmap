@@ -74,7 +74,8 @@ function mapRawMission(
     return undefined;
   }
 
-  const rawStops = r.array(raw, "stops", "stops");
+  // Official T1.1 file: the base is marked "is_base": true (not a science stop), so the assistant skips it.
+  const rawStops = r.array(raw, "stops", "stops").filter((s) => !(isRecord(s) && s["is_base"] === true));
 
   return {
     missionId: r.string(raw, "mission_id", "mission_id"),
@@ -90,11 +91,15 @@ function mapRawStop(raw: unknown, r: FieldReader, path: string): MissionStop {
     r.issues.push(`${path}: expected an object, got ${describe(raw)}`);
     return { id: NaN, name: "", description: "", tasks: [] };
   }
+  // Official T1.1 file may give `science` / `task` instead of `description` / `tasks`.
+  const stop: Record<string, unknown> = { ...raw };
+  if (stop["description"] === undefined && typeof stop["science"] === "string") stop["description"] = stop["science"];
+  if (stop["tasks"] === undefined && typeof stop["task"] === "string") stop["tasks"] = [stop["task"]];
   return {
-    id: r.integer(raw, "id", `${path}.id`),
-    name: r.string(raw, "name", `${path}.name`),
-    description: r.string(raw, "description", `${path}.description`),
-    tasks: r.stringArray(raw, "tasks", `${path}.tasks`),
+    id: r.integer(stop, "id", `${path}.id`),
+    name: r.string(stop, "name", `${path}.name`),
+    description: r.string(stop, "description", `${path}.description`),
+    tasks: r.stringArray(stop, "tasks", `${path}.tasks`),
   };
 }
 

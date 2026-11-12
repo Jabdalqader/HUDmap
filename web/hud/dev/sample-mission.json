@@ -1,0 +1,363 @@
+{
+  "mission_id": "boxwork-sample",
+  "note": "Sample built from real Curiosity data for HUD testing. T1.1's mission.json replaces it.",
+  "site": {
+    "name": "Mount Sharp boxwork",
+    "body": "Mars"
+  },
+  "mars_radius_m": 3396190,
+  "anchor": {
+    "mars": [
+      -4.803606,
+      137.380074
+    ],
+    "field": null,
+    "rotation_deg": 0,
+    "scale": 1.0
+  },
+  "route": [
+    {
+      "mars": [
+        -4.803606,
+        137.380074
+      ],
+      "slope_deg": 8.6,
+      "sol": 4596
+    },
+    {
+      "mars": [
+        -4.804016,
+        137.379756
+      ],
+      "slope_deg": 15.1,
+      "sol": 4598
+    },
+    {
+      "mars": [
+        -4.804189,
+        137.379686
+      ],
+      "slope_deg": 10.8,
+      "sol": 4600
+    },
+    {
+      "mars": [
+        -4.804367,
+        137.379624
+      ],
+      "slope_deg": 7.4,
+      "sol": 4602
+    },
+    {
+      "mars": [
+        -4.804433,
+        137.379557
+      ],
+      "slope_deg": 17.3,
+      "sol": 4605
+    },
+    {
+      "mars": [
+        -4.80474,
+        137.37932
+      ],
+      "slope_deg": 3.8,
+      "sol": 4609
+    },
+    {
+      "mars": [
+        -4.804945,
+        137.379296
+      ],
+      "slope_deg": 3.6,
+      "sol": 4612
+    },
+    {
+      "mars": [
+        -4.805206,
+        137.379448
+      ],
+      "slope_deg": 6.6,
+      "sol": 4614
+    },
+    {
+      "mars": [
+        -4.805453,
+        137.379525
+      ],
+      "slope_deg": 2.5,
+      "sol": 4616
+    },
+    {
+      "mars": [
+        -4.805495,
+        137.379536
+      ],
+      "slope_deg": 4.5,
+      "sol": 4618
+    },
+    {
+      "mars": [
+        -4.805414,
+        137.379513
+      ],
+      "slope_deg": 3.5,
+      "sol": 4621
+    },
+    {
+      "mars": [
+        -4.805484,
+        137.379917
+      ],
+      "slope_deg": 9.3,
+      "sol": 4623
+    },
+    {
+      "mars": [
+        -4.805859,
+        137.379758
+      ],
+      "slope_deg": 11.1,
+      "sol": 4625
+    },
+    {
+      "mars": [
+        -4.80599,
+        137.37946
+      ],
+      "slope_deg": 0.2,
+      "sol": 4628
+    },
+    {
+      "mars": [
+        -4.806167,
+        137.379723
+      ],
+      "slope_deg": 9.1,
+      "sol": 4629
+    },
+    {
+      "mars": [
+        -4.806458,
+        137.379674
+      ],
+      "slope_deg": 2.2,
+      "sol": 4633
+    },
+    {
+      "mars": [
+        -4.806356,
+        137.379117
+      ],
+      "slope_deg": 9.3,
+      "sol": 4634
+    },
+    {
+      "mars": [
+        -4.806538,
+        137.379338
+      ],
+      "slope_deg": 15.0,
+      "sol": 4636
+    },
+    {
+      "mars": [
+        -4.806553,
+        137.379317
+      ],
+      "slope_deg": 9.3,
+      "sol": 4639
+    },
+    {
+      "mars": [
+        -4.806691,
+        137.379354
+      ],
+      "slope_deg": 25.6,
+      "sol": 4641
+    },
+    {
+      "mars": [
+        -4.806797,
+        137.379412
+      ],
+      "slope_deg": 13.5,
+      "sol": 4643
+    },
+    {
+      "mars": [
+        -4.806891,
+        137.379812
+      ],
+      "slope_deg": 0.8,
+      "sol": 4647
+    },
+    {
+      "mars": [
+        -4.806893,
+        137.379842
+      ],
+      "slope_deg": 12.3,
+      "sol": 4650
+    },
+    {
+      "mars": [
+        -4.80708,
+        137.379896
+      ],
+      "slope_deg": 3.2,
+      "sol": 4653
+    },
+    {
+      "mars": [
+        -4.807168,
+        137.379896
+      ],
+      "slope_deg": 6.5,
+      "sol": 4655
+    },
+    {
+      "mars": [
+        -4.807452,
+        137.38006
+      ],
+      "slope_deg": 2.6,
+      "sol": 4660
+    },
+    {
+      "mars": [
+        -4.807628,
+        137.380189
+      ],
+      "slope_deg": 2.7,
+      "sol": 4662
+    },
+    {
+      "mars": [
+        -4.807925,
+        137.380249
+      ],
+      "slope_deg": 0.0,
+      "sol": 4664
+    }
+  ],
+  "stops": [
+    {
+      "id": 1,
+      "name": "Ridge edge",
+      "mars": [
+        -4.80474,
+        137.37932
+      ],
+      "sol": 4609,
+      "task": "Photograph the raised ridge line from both sides.",
+      "hazard": "Loose sand at the foot of the ridge",
+      "science": "Boxwork is a web of low ridges. Groundwater once flowed through cracks and left minerals that hardened them; wind later wore away the softer rock in between.",
+      "photo": null,
+      "conditions": {
+        "temp_c": -48,
+        "pressure_pa": 731,
+        "rad_uSv_h": 27.9,
+        "source": "REMS sol 4609 (temperature min/max average, pressure); RAD surface average"
+      },
+      "sources": [
+        "MSL waypoint sol 4609"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Hollow between ridges",
+      "mars": [
+        -4.805859,
+        137.379758
+      ],
+      "sol": 4625,
+      "task": "Measure how deep the hollow is next to the ridge.",
+      "hazard": "Soft ground in the hollow",
+      "science": "Boxwork is a web of low ridges. Groundwater once flowed through cracks and left minerals that hardened them; wind later wore away the softer rock in between.",
+      "photo": null,
+      "conditions": {
+        "temp_c": -48,
+        "pressure_pa": 715,
+        "rad_uSv_h": 27.9,
+        "source": "REMS sol 4625 (temperature min/max average, pressure); RAD surface average"
+      },
+      "sources": [
+        "MSL waypoint sol 4625"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Ridge top",
+      "mars": [
+        -4.806553,
+        137.379317
+      ],
+      "sol": 4639,
+      "task": "Photograph the central fracture along the ridge top.",
+      "hazard": "Steep climb onto the ridge",
+      "science": "Boxwork is a web of low ridges. Groundwater once flowed through cracks and left minerals that hardened them; wind later wore away the softer rock in between.",
+      "photo": "https://mars.nasa.gov/msl-raw-images/msss/04639/mcam/4639ML1081940061804815C00_DXXX.jpg",
+      "conditions": {
+        "temp_c": -48,
+        "pressure_pa": 703,
+        "rad_uSv_h": 27.9,
+        "source": "REMS sol 4639 (temperature min/max average, pressure); RAD surface average"
+      },
+      "sources": [
+        "MSL waypoint sol 4639",
+        "Raw image sol 4639"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Nodule wall",
+      "mars": [
+        -4.80708,
+        137.379896
+      ],
+      "sol": 4653,
+      "task": "Look for small round nodules on the ridge wall.",
+      "hazard": "Sharp rock edges",
+      "science": "Boxwork is a web of low ridges. Groundwater once flowed through cracks and left minerals that hardened them; wind later wore away the softer rock in between.",
+      "photo": null,
+      "conditions": {
+        "temp_c": -43,
+        "pressure_pa": 692,
+        "rad_uSv_h": 27.9,
+        "source": "REMS sol 4653 (temperature min/max average, pressure); RAD surface average"
+      },
+      "sources": [
+        "MSL waypoint sol 4653"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Lookout",
+      "mars": [
+        -4.807925,
+        137.380249
+      ],
+      "sol": 4664,
+      "task": "Look back along the route and report the view.",
+      "hazard": "Long walk back to base",
+      "science": "Boxwork is a web of low ridges. Groundwater once flowed through cracks and left minerals that hardened them; wind later wore away the softer rock in between.",
+      "photo": null,
+      "conditions": {
+        "temp_c": -48,
+        "pressure_pa": 686,
+        "rad_uSv_h": 27.9,
+        "source": "REMS sol 4664 (temperature min/max average, pressure); RAD surface average"
+      },
+      "sources": [
+        "MSL waypoint sol 4664"
+      ]
+    }
+  ],
+  "base_photo": "https://mars.nasa.gov/msl-raw-images/msss/04596/mcam/4596ML1079310061803084C00_DXXX.jpg",
+  "suit": {
+    "o2_start_pct": 100,
+    "o2_pct_per_min": 0.25,
+    "walk_speed_mps": 0.8
+  }
+}

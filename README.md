@@ -3,7 +3,6 @@
 A cheap helmet display for astronauts on a Marswalk: an Android phone in a VR box shows a HUD over the real camera (desert) or a Mars panorama (VR simulation), with a voice assistant and a live Ground Control screen. Built for NASA Space Apps 2026.
 
 - System design: [docs/system-design.md](docs/system-design.md)
-- Tasks: [docs/backlog.md](docs/backlog.md)
 
 ## Folders and owners
 

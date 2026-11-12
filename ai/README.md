@@ -63,3 +63,9 @@ Never put an ElevenLabs API key in frontend code.
 ## Replacing Mock Data
 
 See `docs/REPLACING_MOCK_DATA.md`.
+
+## HUD integration (merged)
+- `src/hudBridge.ts` exposes the assistant to the HUD as `toggleVoice()`, `getConversation().sendContextualUpdate()`, `onAgentText()`, `isListening()`, reading live status from `window.hud.getStatus()`.
+- Build it into the website with `npm run build:hud` → `web/ai/voice.js` (copies the official `web/mission/mission.json` into `src/data/` and builds with `VITE_MISSION_DATA_SOURCE=official`).
+- Agent ID: put it in `.env.local` (`VITE_ELEVENLABS_AGENT_ID=...`) before `npm run build:hud`, or open the HUD with `?agent=<id>`.
+- `src/adapters/missionDataAdapter.ts` now also reads the official schema: skips the stop marked `"is_base": true`, maps `science` → `description` and `task` → `tasks`. Test: `tests/officialMission.test.ts`. All 68 tests pass.
