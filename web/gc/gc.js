@@ -54,7 +54,8 @@ function onTelemetry(t) {
   for (const a of now) if (!lastAlerts.has(a)) log(`ALERT ${a.replaceAll("_", " ")}`, "alert");
   lastAlerts = now;
 }
-function videoPlaying() { return video.srcObject && video.videoWidth > 0; }
+let localLink = false;
+function videoPlaying() { return localLink || (video.srcObject && video.videoWidth > 0); }
 function onData(msg) {
   if (!msg || typeof msg !== "object") return;
   lastData = Date.now();
@@ -117,10 +118,13 @@ if (params.get("room")) { $("room").value = params.get("room"); connect(params.g
 
 // ---------- outgoing ----------
 function sendToAstronaut(msg, label) {
-  if (!conn?.open) { log("Not connected", "alert"); return; }
+  if (!localLink && !conn?.open) { log("Not connected", "alert"); return; }
   const d = delayMs();
   log(d ? `${label} (arrives in ${d / 1000} s, Mars delay)` : label, "gc");
-  later(() => conn?.open && conn.send(msg));
+  later(() => {
+    if (localLink) fetch("/api/message", { method: "POST", body: JSON.stringify(msg), headers: { "Content-Type": "application/json" } }).catch(() => log("Send failed", "alert"));
+    else if (conn?.open) conn.send(msg);
+  });
 }
 $("msgForm").addEventListener("submit", (e) => {
   e.preventDefault();
@@ -134,3 +138,30 @@ document.querySelectorAll("[data-event]").forEach((b) =>
 document.querySelectorAll("[data-demo]").forEach((b) =>
   b.addEventListener("click", () => sendToAstronaut({ type: "demo", name: b.dataset.demo }, `TEST ${b.textContent}`)));
 $("delayOn").addEventListener("change", () => log($("delayOn").checked ? `Mars delay ON (${$("delaySec").value} s each way). Video stays live.` : "Mars delay OFF", "info"));
+
+// ---------- local link (this page is served by server/server.mjs on the laptop) ----------
+async function startLocalLink() {
+  try { if (!(await fetch("/api/ping", { cache: "no-store" })).ok) return; } catch { return; }
+  localLink = true;
+  clearTimeout(retryTimer); conn?.close(); peer?.destroy(); room = null;
+  $("join").querySelector("label").style.display = "none";
+  $("join").querySelector("button").style.display = "none";
+  setLink("local link: waiting for phone", "warn");
+  snap.src = "/api/video.mjpg";                                    // live picture stream from the phone
+  snap.style.display = "block"; video.style.display = "none";
+  snap.onload = () => { noVideo.style.display = "none"; };
+  snap.onerror = () => setTimeout(() => { snap.src = `/api/video.mjpg?${Date.now()}`; }, 1000);
+  const events = new EventSource("/api/events");                  // reconnects by itself
+  let phoneOnline = false;
+  events.onmessage = (e) => {
+    const msg = JSON.parse(e.data);
+    if (msg.type === "ping") {
+      if (msg.phoneOnline !== phoneOnline) { phoneOnline = msg.phoneOnline; log(phoneOnline ? "Phone connected" : "Phone not sending", phoneOnline ? "info" : "alert"); }
+      setLink(phoneOnline ? "local link · phone online" : "local link: waiting for phone", phoneOnline ? "on" : "warn");
+      return;
+    }
+    onData(msg);
+  };
+  events.onerror = () => setLink("laptop server not reachable", "warn");
+}
+startLocalLink();

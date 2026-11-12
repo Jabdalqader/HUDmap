@@ -37,7 +37,9 @@ export function createFieldSource({ doc = document, nav = navigator, win = windo
     heading = smoothHeading(heading, h);
   }
 
+  let fixAt = 0;
   function onPosition(pos) {
+    fixAt = Date.now();
     position = [pos.coords.latitude, pos.coords.longitude];
     accuracy = pos.coords.accuracy;
     const course = pos.coords.heading;
@@ -56,7 +58,7 @@ export function createFieldSource({ doc = document, nav = navigator, win = windo
         source.gpsError = err.code === 1
           ? 'Location blocked: allow it (iPhone: Settings > Privacy > Location Services > Safari Websites)'
           : 'No GPS signal yet: go outside, away from buildings';
-      }, { enableHighAccuracy: true, maximumAge: 1000, timeout: 20000 });
+      }, { enableHighAccuracy: true, maximumAge: 0, timeout: 30000 });
 
       video.srcObject = await nav.mediaDevices.getUserMedia({
         video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 30 } },
@@ -71,7 +73,7 @@ export function createFieldSource({ doc = document, nav = navigator, win = windo
       video.srcObject?.getTracks().forEach((t) => t.stop());
     },
     getPosition() {
-      return position ? { at: position, heading: heading ?? 0, accuracy, hasHeading: heading != null } : null;
+      return position ? { at: position, heading: heading ?? 0, accuracy, hasHeading: heading != null, fixAt } : null;
     },
     getBackground() {
       return video;

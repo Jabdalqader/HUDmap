@@ -113,21 +113,66 @@ async function connect() {
   }, SNAP_MS);
 }
 
+// ---------- local link: the Ground Control laptop runs server/server.mjs and serves this page ----------
+const FRAME_W = 640, FRAME_GAP_MS = 120;
+async function relayAvailable() {
+  try { return (await fetch("/api/ping", { cache: "no-store" })).ok; } catch { return false; }
+}
+function startRelay() {
+  state.mode = "local";
+  state.status = "local link";
+  const events = new EventSource("/api/phone-events");          // reconnects by itself
+  events.onmessage = (e) => {
+    const msg = JSON.parse(e.data);
+    if (msg.type === "ping") { state.viewers = msg.viewers; state.status = msg.viewers ? "Ground Control connected" : "waiting for Ground Control"; }
+    else onData(msg);
+  };
+  events.onerror = () => { state.status = "reconnecting to laptop"; };
+  // live view: send the next frame only when the last one arrived, so lag never builds up
+  const small = document.createElement("canvas");
+  (async function frames() {
+    for (;;) {
+      const t0 = performance.now();
+      const src = document.getElementById("hud-stream") || document.getElementById("hud");
+      if (src?.width && state.viewers) {
+        small.width = FRAME_W; small.height = Math.round((src.height / src.width) * FRAME_W);
+        small.getContext("2d").drawImage(src, 0, 0, small.width, small.height);
+        const blob = await new Promise((r) => small.toBlob(r, "image/jpeg", 0.6));
+        try { await fetch("/api/frame", { method: "POST", body: blob, headers: { "Content-Type": "image/jpeg" } }); } catch { /* laptop busy: try again */ }
+      }
+      await new Promise((r) => setTimeout(r, Math.max(30, FRAME_GAP_MS - (performance.now() - t0)) + (state.viewers ? 0 : 900)));
+    }
+  })();
+}
+let telemetryBusy = false;
+function relayTelemetry(obj) {
+  if (telemetryBusy) return;
+  telemetryBusy = true;
+  fetch("/api/telemetry", { method: "POST", body: JSON.stringify(obj), headers: { "Content-Type": "application/json" } })
+    .catch(() => {}).finally(() => { telemetryBusy = false; });
+}
+
 let started = false;
 function ensureStarted() {
   if (started) return;
   started = true;
-  connect().catch((e) => { state.status = `link error: ${e.message}`; });
+  relayAvailable().then((local) => (local ? startRelay() : connect()))
+    .catch((e) => { state.status = `link error: ${e.message}`; });
+}
+/** Label for the HUD's COMMS panel. */
+export function linkLabel() {
+  return state.mode === "local" ? "Ground Control: local link" : `Ground Control code ${getRoom()}`;
 }
 
 // ---------- what the HUD calls ----------
 export function sendTelemetry(obj) {
   ensureStarted();
-  send({ type: "telemetry", ...obj });
+  if (state.mode === "local") relayTelemetry(obj);
+  else send({ type: "telemetry", ...obj });
 }
 export async function sendPhoto(blob) {
   ensureStarted();
-  if (!state.conns.size || !blob) return;
+  if (state.mode === "local" || !state.conns.size || !blob) return;   // local link already streams the view
   send({ type: "photo", data: await blob.arrayBuffer() });
 }
 export function onMessage(callback) {

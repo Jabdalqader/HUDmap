@@ -96,7 +96,7 @@ async function start(mode, view, motionAsked) {
   await source.start();
 
   const link = live.real
-    ? { label: `Ground Control code ${live.part.getRoom?.() ?? ''}`.trim(), bars: 4 }
+    ? { get label() { return live.part.linkLabel?.() ?? 'Habitat link'; }, bars: 4 }
     : { label: 'Local only (stand-in)', bars: 1 };
   app = createHudApp({ mission, source, live: live.part, voice: voice.part, link });
   const canvas = document.getElementById('hud');

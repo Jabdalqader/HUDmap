@@ -100,6 +100,18 @@ export function createHudApp({
       + sentence('Task', stop.task) + sentence('Hazard', stop.hazard) + sentence('Science', stop.science));
   }
 
+  // Field / Mars walk: tell the astronaut when the GPS is weak or stuck (the usual reason the metres don't change)
+  let gpsWarnAt = 0;
+  function gpsHealth(position, t) {
+    if (source.frame !== 'field' || !position.fixAt || t - gpsWarnAt < 12000) return;
+    const age = (Date.now() - position.fixAt) / 1000;
+    let text = '';
+    if (position.accuracy > 200) text = `GPS only approximate (±${Math.round(position.accuracy)} m): turn on "Use precise location" for Chrome`;
+    else if (age > 10) text = `GPS not updating (${Math.round(age)} s): go outside, away from buildings`;
+    else if (position.accuracy > 25) text = `GPS weak (±${Math.round(position.accuracy)} m): metres may jump`;
+    if (text) { gpsWarnAt = t; message = { text, fromGround: false, until: clock() + MESSAGE_MS }; }
+  }
+
   function tick() {
     const t = clock();
     suit.update(t);
@@ -107,6 +119,7 @@ export function createHudApp({
     radDoseUsv += ((conditions()?.rad_uSv_h ?? 0) * (t - lastTickMs)) / 3600000;
     lastTickMs = t;
     if (!position || !ensureWorld(position)) return;
+    gpsHealth(position, t);
 
     if (lastSpot) {
       const moved = distanceM(lastSpot.at, position.at, world.r) / Math.max(0.001, (t - lastSpot.t) / 1000);
